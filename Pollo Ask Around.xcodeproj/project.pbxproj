@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */; };
+		CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */; };
+		CB51B0A61DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0A41DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld */; };
+		CB51B0A81DDBEA3E00A5ACCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A71DDBEA3E00A5ACCF /* Assets.xcassets */; };
+		CB51B0AB1DDBEA3E00A5ACCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A91DDBEA3E00A5ACCF /* LaunchScreen.storyboard */; };
+		CB51B0B71DDBEBA800A5ACCF /* PollsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0B61DDBEBA800A5ACCF /* PollsViewController.swift */; };
+		CB51B0B91DDBEBED00A5ACCF /* Polls.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */; };
+		CB51B0BB1DDBEC1D00A5ACCF /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0BA1DDBEC1D00A5ACCF /* Favorites.storyboard */; };
+		CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0BC1DDBEC6A00A5ACCF /* FavoritesViewController.swift */; };
+		CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0BE1DDBEC7F00A5ACCF /* MapViewController.swift */; };
+		CB51B0C11DDBEC8800A5ACCF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */; };
+		CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */; };
+		CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pollo Ask Around.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CB51B0A21DDBEA3E00A5ACCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CB51B0A51DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pollo_Ask_Around.xcdatamodel; sourceTree = "<group>"; };
+		CB51B0A71DDBEA3E00A5ACCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB51B0AA1DDBEA3E00A5ACCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CB51B0AC1DDBEA3E00A5ACCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB51B0B61DDBEBA800A5ACCF /* PollsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollsViewController.swift; sourceTree = "<group>"; };
+		CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Polls.storyboard; sourceTree = "<group>"; };
+		CB51B0BA1DDBEC1D00A5ACCF /* Favorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
+		CB51B0BC1DDBEC6A00A5ACCF /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		CB51B0BE1DDBEC7F00A5ACCF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB51B0971DDBEA3E00A5ACCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB51B0911DDBEA3E00A5ACCF = {
+			isa = PBXGroup;
+			children = (
+				CB51B09C1DDBEA3E00A5ACCF /* Pollo Ask Around */,
+				CB51B09B1DDBEA3E00A5ACCF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB51B09B1DDBEA3E00A5ACCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB51B09C1DDBEA3E00A5ACCF /* Pollo Ask Around */ = {
+			isa = PBXGroup;
+			children = (
+				CB51B0B21DDBEB6000A5ACCF /* Polls */,
+				CB51B0B31DDBEB6C00A5ACCF /* Favorites */,
+				CB51B0B51DDBEB7F00A5ACCF /* Map */,
+				CB51B0B41DDBEB7900A5ACCF /* Settings */,
+				CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */,
+				CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */,
+				CB51B0A71DDBEA3E00A5ACCF /* Assets.xcassets */,
+				CB51B0A91DDBEA3E00A5ACCF /* LaunchScreen.storyboard */,
+				CB51B0AC1DDBEA3E00A5ACCF /* Info.plist */,
+				CB51B0A41DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld */,
+			);
+			path = "Pollo Ask Around";
+			sourceTree = "<group>";
+		};
+		CB51B0B21DDBEB6000A5ACCF /* Polls */ = {
+			isa = PBXGroup;
+			children = (
+				CB51B0B61DDBEBA800A5ACCF /* PollsViewController.swift */,
+				CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */,
+			);
+			name = Polls;
+			sourceTree = "<group>";
+		};
+		CB51B0B31DDBEB6C00A5ACCF /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				CB51B0BA1DDBEC1D00A5ACCF /* Favorites.storyboard */,
+				CB51B0BC1DDBEC6A00A5ACCF /* FavoritesViewController.swift */,
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
+		CB51B0B41DDBEB7900A5ACCF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */,
+				CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		CB51B0B51DDBEB7F00A5ACCF /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CB51B0BE1DDBEC7F00A5ACCF /* MapViewController.swift */,
+				CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB51B0991DDBEA3E00A5ACCF /* Pollo Ask Around */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB51B0AF1DDBEA3E00A5ACCF /* Build configuration list for PBXNativeTarget "Pollo Ask Around" */;
+			buildPhases = (
+				CB51B0961DDBEA3E00A5ACCF /* Sources */,
+				CB51B0971DDBEA3E00A5ACCF /* Frameworks */,
+				CB51B0981DDBEA3E00A5ACCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pollo Ask Around";
+			productName = "Pollo Ask Around";
+			productReference = CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB51B0921DDBEA3E00A5ACCF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = CAKK;
+				TargetAttributes = {
+					CB51B0991DDBEA3E00A5ACCF = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CB51B0951DDBEA3E00A5ACCF /* Build configuration list for PBXProject "Pollo Ask Around" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CB51B0911DDBEA3E00A5ACCF;
+			productRefGroup = CB51B09B1DDBEA3E00A5ACCF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB51B0991DDBEA3E00A5ACCF /* Pollo Ask Around */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB51B0981DDBEA3E00A5ACCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB51B0AB1DDBEA3E00A5ACCF /* LaunchScreen.storyboard in Resources */,
+				CB51B0B91DDBEBED00A5ACCF /* Polls.storyboard in Resources */,
+				CB51B0A81DDBEA3E00A5ACCF /* Assets.xcassets in Resources */,
+				CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */,
+				CB51B0BB1DDBEC1D00A5ACCF /* Favorites.storyboard in Resources */,
+				CB51B0C11DDBEC8800A5ACCF /* Map.storyboard in Resources */,
+				CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB51B0961DDBEA3E00A5ACCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB51B0A61DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld in Sources */,
+				CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */,
+				CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */,
+				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
+				CB51B0B71DDBEBA800A5ACCF /* PollsViewController.swift in Sources */,
+				CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB51B0A21DDBEA3E00A5ACCF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CB51B0A91DDBEA3E00A5ACCF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB51B0AA1DDBEA3E00A5ACCF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CB51B0AD1DDBEA3E00A5ACCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CB51B0AE1DDBEA3E00A5ACCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB51B0B01DDBEA3E00A5ACCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Pollo Ask Around/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CAKK.Pollo-Ask-Around";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CB51B0B11DDBEA3E00A5ACCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Pollo Ask Around/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CAKK.Pollo-Ask-Around";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB51B0951DDBEA3E00A5ACCF /* Build configuration list for PBXProject "Pollo Ask Around" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB51B0AD1DDBEA3E00A5ACCF /* Debug */,
+				CB51B0AE1DDBEA3E00A5ACCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB51B0AF1DDBEA3E00A5ACCF /* Build configuration list for PBXNativeTarget "Pollo Ask Around" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB51B0B01DDBEA3E00A5ACCF /* Debug */,
+				CB51B0B11DDBEA3E00A5ACCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CB51B0A41DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CB51B0A51DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodel */,
+			);
+			currentVersion = CB51B0A51DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodel */;
+			path = Pollo_Ask_Around.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CB51B0921DDBEA3E00A5ACCF /* Project object */;
+}
