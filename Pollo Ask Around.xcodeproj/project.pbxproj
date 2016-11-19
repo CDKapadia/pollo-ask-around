@@ -361,6 +361,7 @@
 				CB51B0B11DDBEA3E00A5ACCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

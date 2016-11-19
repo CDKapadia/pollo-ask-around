@@ -8,8 +8,11 @@
 
 import UIKit
 
-class PollsViewController: UIViewController {
+class PollsViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet weak var pollsTableView: UITableView!
+     var myArray = ["Mary", "Billy", "Jane"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,8 +24,31 @@ class PollsViewController: UIViewController {
         
         print("Let the magic begin. CK")
         
+        
+        
+        
         // Do any additional setup after loading the view.
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myArray.count
+    }
+    
+    func tableView(_ cellForRowAttableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+       // let myCell = pollsTableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
+        
+        print("in cellForRow at \(indexPath)")
+        
+        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        
+        myCell.textLabel!.text = myArray[indexPath.row]
+        
+        return myCell
+        
+    }
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
