@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jvu-gC-MkG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8WA-Nq-utx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,23 +9,50 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="NHz-kq-aV7">
+        <!--Navigation Controller-->
+        <scene sceneID="MI8-Wv-w5F">
             <objects>
-                <viewController id="jvu-gC-MkG" sceneMemberID="viewController">
+                <navigationController id="8WA-Nq-utx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zmK-Zt-gwF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kB2-Ef-ckg" kind="relationship" relationship="rootViewController" id="ExH-tZ-hWR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JdU-0v-IVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-265" y="-317"/>
+        </scene>
+        <!--Polls View Controller-->
+        <scene sceneID="Mm6-XI-TN1">
+            <objects>
+                <viewController id="kB2-Ef-ckg" customClass="PollsViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="22M-G1-hgR"/>
-                        <viewControllerLayoutGuide type="bottom" id="fBq-vO-pFI"/>
+                        <viewControllerLayoutGuide type="top" id="guf-SF-Vsa"/>
+                        <viewControllerLayoutGuide type="bottom" id="d60-no-ImL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="T8W-4x-05N">
+                    <view key="view" contentMode="scaleToFill" id="ler-p5-gKh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.039765733839812967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pSU-p6-bhE" userLabel="PollsTableView">
+                                <rect key="frame" x="0.0" y="72" width="375" height="491"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3Rp-SY-EoZ"/>
+                    <connections>
+                        <outlet property="pollsTableView" destination="pSU-p6-bhE" id="iSc-bD-r3R"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SNh-RO-UOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N74-0R-Mx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="124" y="161"/>
+            <point key="canvasLocation" x="463.19999999999999" y="-297.30134932533736"/>
         </scene>
     </scenes>
 </document>
