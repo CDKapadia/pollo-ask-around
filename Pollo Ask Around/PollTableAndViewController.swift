@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import MapKit
 
 class PollTableAndViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var pollsTableView: UITableView!
+    
+    @IBOutlet weak var mapOnPollsView: MKMapView!
     
     var myArray = ["Mary", "Billy", "Jane"]
 
@@ -28,7 +31,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         print("in cellForRow at \(indexPath)")
-        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)        
+        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
         myCell.textLabel!.text = myArray[indexPath.row]
         
         return myCell
