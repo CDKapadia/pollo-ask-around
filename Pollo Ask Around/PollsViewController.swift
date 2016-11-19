@@ -22,7 +22,7 @@ class PollsViewController: UIViewController, UITableViewDataSource {
         view.addSubview(controller.view)
         controller.didMove(toParentViewController: self)
         
-        print("Let the magic begin. CK")
+        print("Let the magic begin. CK2")
         
         
         
