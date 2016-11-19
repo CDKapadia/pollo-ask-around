@@ -80,10 +80,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Polls" id="5ho-zt-G5R"/>
+                    <navigationItem key="navigationItem" id="wly-Md-eLx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CyH-wh-NXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-385"/>
+            <point key="canvasLocation" x="610" y="-833"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oZl-Hf-86E">
@@ -95,10 +96,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yRN-03-RaI" kind="relationship" relationship="viewControllers" id="Gmw-ZE-dpq"/>
                         <segue destination="FaZ-CL-IRP" kind="relationship" relationship="viewControllers" id="814-Xk-QkR"/>
                         <segue destination="uyG-Hm-kYb" kind="relationship" relationship="viewControllers" id="FrZ-4x-Daz"/>
                         <segue destination="auR-Wd-13r" kind="relationship" relationship="viewControllers" id="8i3-6f-dbh"/>
+                        <segue destination="yRN-03-RaI" kind="relationship" relationship="viewControllers" id="yo8-M4-dzC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AOA-Id-g9F" userLabel="First Responder" sceneMemberID="firstResponder"/>

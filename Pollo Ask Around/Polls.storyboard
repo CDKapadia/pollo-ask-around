@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8WA-Nq-utx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cUw-SE-wWa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,49 +10,49 @@
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
-        <scene sceneID="MI8-Wv-w5F">
+        <scene sceneID="880-jq-IUs">
             <objects>
-                <navigationController id="8WA-Nq-utx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zmK-Zt-gwF">
+                <navigationController id="cUw-SE-wWa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h8j-rE-8OP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="kB2-Ef-ckg" kind="relationship" relationship="rootViewController" id="ExH-tZ-hWR"/>
+                        <segue destination="fhX-uJ-WWs" kind="relationship" relationship="rootViewController" id="ytC-HA-BkX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JdU-0v-IVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wb0-Vi-r7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-265" y="-317"/>
+            <point key="canvasLocation" x="842" y="-440"/>
         </scene>
-        <!--Polls View Controller-->
-        <scene sceneID="Mm6-XI-TN1">
+        <!--Poll Table And View Controller-->
+        <scene sceneID="Gbm-wP-cnK">
             <objects>
-                <viewController id="kB2-Ef-ckg" customClass="PollsViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fhX-uJ-WWs" customClass="PollTableAndViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="guf-SF-Vsa"/>
-                        <viewControllerLayoutGuide type="bottom" id="d60-no-ImL"/>
+                        <viewControllerLayoutGuide type="top" id="GOb-kL-F9f"/>
+                        <viewControllerLayoutGuide type="bottom" id="hnC-0E-8pK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ler-p5-gKh">
+                    <view key="view" contentMode="scaleToFill" id="Uaa-e3-KU7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pSU-p6-bhE" userLabel="PollsTableView">
-                                <rect key="frame" x="0.0" y="72" width="375" height="491"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jv8-ck-H9N">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3Rp-SY-EoZ"/>
+                    <navigationItem key="navigationItem" id="WQY-hK-tbT"/>
                     <connections>
-                        <outlet property="pollsTableView" destination="pSU-p6-bhE" id="iSc-bD-r3R"/>
+                        <outlet property="pollsTableView" destination="Jv8-ck-H9N" id="Y4u-s3-ZHQ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N74-0R-Mx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zFt-bv-g9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463.19999999999999" y="-297.30134932533736"/>
+            <point key="canvasLocation" x="1647.2" y="-434.03298350824593"/>
         </scene>
     </scenes>
 </document>

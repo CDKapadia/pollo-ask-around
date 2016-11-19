@@ -8,16 +8,14 @@
 
 import UIKit
 
-class PollsViewController: UIViewController, UITableViewDataSource {
+class PollsViewController: UIViewController {
 
-    @IBOutlet weak var pollsTableView: UITableView!
-     var myArray = ["Mary", "Billy", "Jane"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var storyboard = UIStoryboard(name: "Polls", bundle: nil)
-        var controller = storyboard.instantiateInitialViewController()! as UIViewController
+        let storyboard = UIStoryboard(name: "Polls", bundle: nil)
+        let controller = storyboard.instantiateInitialViewController()! as UIViewController
         addChildViewController(controller)
         view.addSubview(controller.view)
         controller.didMove(toParentViewController: self)
@@ -29,24 +27,7 @@ class PollsViewController: UIViewController, UITableViewDataSource {
         
         // Do any additional setup after loading the view.
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
-    }
-    
-    func tableView(_ cellForRowAttableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-       // let myCell = pollsTableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
-        
-        print("in cellForRow at \(indexPath)")
-        
-        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        
-        myCell.textLabel!.text = myArray[indexPath.row]
-        
-        return myCell
-        
-    }
+
 
     
 

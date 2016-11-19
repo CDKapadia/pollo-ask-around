@@ -20,6 +20,7 @@
 		CB51B0C11DDBEC8800A5ACCF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */; };
 		CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */; };
 		CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */; };
+		CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableAndViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				CB51B0B61DDBEBA800A5ACCF /* PollsViewController.swift */,
 				CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */,
+				CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */,
 			);
 			name = Polls;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */,
 				CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */,
 				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
+				CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */,
 				CB51B0B71DDBEBA800A5ACCF /* PollsViewController.swift in Sources */,
 				CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */,
 			);
