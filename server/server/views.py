@@ -1,14 +1,18 @@
 '''
     views file that defines behavior for each webppage
 '''
-import json
 import ast
-from flask import request
+from flask import request, make_response, jsonify
 from server import app
 from server.models import db, User, Post, Option
 import sqlalchemy.exc
 
 db.create_all()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @app.route('/')
@@ -32,32 +36,48 @@ def init_user():
             response['message'] = 'uuid exists'
         except:
             response['message'] = 'db error'
-    return json.dumps(response)
+    return jsonify(response)
 
 
 @app.route('/create_post', methods=['POST'])
 def create_post():
-    required_args = ['question', 'lat', 'lng', 'uuid', 'options']
+    required_args = ['q', 'lat', 'lng', 'uuid', 'options']
     passed_params = {}
     response = {}
 
-    for key in requiredargs:
-        passed_params[key] = request.form.get('key', None)
+    # get all arguments from post
+    for key in required_args:
+        passed_params[key] = request.form.get(key, None)
 
     # check that all required parameters were passed
-    if any(pased_params[key] is None for key in required_args):
+    if any(passed_params[key] is None for key in required_args):
         response['message'] = "not all parameters were passed"
     else:
         try:
-            passed_params['options'] = ast.literal_eval(passed_params['options'])
+            options = ast.literal_eval(passed_params['options'])
         except:
-            response['message'] = 'options were not passed correctly'
+            response['error'] = 'options were not passed correctly'
         else:
-            user = User.query.filter_by(uuid=passed_params['uuid']).first()
-            post = Post(passed_params['question'], passed_params['lat'], passed_params['lng'], user)
-            db.session.add(post)
-            db.session.commit()
-        return json.dumps(response)
+            try:
+                user = User.query.filter_by(uuid=passed_params['uuid']).first()
+                post = Post(passed_params['q'], passed_params['lat'], passed_params['lng'], user)
+
+                db.session.add(post)
+                db.session.flush()
+
+                for option in options:
+                    db.session.add(Option(option, post.pid))
+
+                response['error'] = 'post created'
+                db.session.commit()
+            except:
+                response['error'] = 'user with id %s not found' % passed_params['uuid']
+    return jsonify(response)
+
+
+@app.route('/posts', methods=['GET'])
+def posts():
+    args = ['uuid', 'lat', 'lng', 'radius']
 
 @app.route('/test')
 def test():
