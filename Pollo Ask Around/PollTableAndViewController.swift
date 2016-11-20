@@ -14,15 +14,34 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var mapOnPollsView: MKMapView!
     
-    var myArray = ["Mary", "Billy", "Jane"]
+    var myArray = ["Mary", "Jane", "Billy"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        //let locManager = CLLocationManager()
+        //locManager.requestAlwaysAuthorization()
+        //locManager.requestWhenInUseAuthorization()
+        var currentLocation: CLLocation!
+        currentLocation = CLLocation(latitude: 38.648114, longitude: -90.311554)
+        //        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+        //            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+        //            currentLocation = locManager.location
+        //            centerMapOnLocation(location: currentLocation)
+        //            
+        //        }
+        centerMapOnLocation(location: currentLocation)
         pollsTableView.dataSource = self
         print("I am here")
         // Do any additional setup after loading the view.
     }
+    
+    let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        mapOnPollsView.setRegion(coordinateRegion, animated: true)
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myArray.count

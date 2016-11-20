@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cUw-SE-wWa">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cUw-SE-wWa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="842" y="-440"/>
         </scene>
-        <!--Poll Table And View Controller-->
+        <!--Loco Pollo-->
         <scene sceneID="Gbm-wP-cnK">
             <objects>
                 <viewController id="fhX-uJ-WWs" customClass="PollTableAndViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,19 +38,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jv8-ck-H9N">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jv8-ck-H9N">
                                 <rect key="frame" x="0.0" y="266" width="375" height="401"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ig7-K8-xrR">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ig7-K8-xrR">
                                 <rect key="frame" x="0.0" y="64" width="375" height="194"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="FM4-Zh-KFL"/>
+                                </constraints>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Jv8-ck-H9N" firstAttribute="top" secondItem="ig7-K8-xrR" secondAttribute="bottom" constant="8" symbolic="YES" id="A7b-dH-eBh"/>
+                            <constraint firstItem="ig7-K8-xrR" firstAttribute="trailing" secondItem="Jv8-ck-H9N" secondAttribute="trailing" id="Fa8-ev-PRN"/>
+                            <constraint firstItem="Jv8-ck-H9N" firstAttribute="bottom" secondItem="hnC-0E-8pK" secondAttribute="top" id="GwB-64-1Cc"/>
+                            <constraint firstItem="ig7-K8-xrR" firstAttribute="leading" secondItem="Jv8-ck-H9N" secondAttribute="leading" id="MKI-cK-KUg"/>
+                            <constraint firstAttribute="trailing" secondItem="ig7-K8-xrR" secondAttribute="trailing" id="RvQ-oZ-c3h"/>
+                            <constraint firstItem="ig7-K8-xrR" firstAttribute="top" secondItem="Uaa-e3-KU7" secondAttribute="topMargin" constant="33" id="h1N-vS-Rlr"/>
+                            <constraint firstItem="ig7-K8-xrR" firstAttribute="leading" secondItem="Uaa-e3-KU7" secondAttribute="leading" id="oXx-QO-qlu"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="WQY-hK-tbT"/>
+                    <navigationItem key="navigationItem" title="Loco Pollo" id="WQY-hK-tbT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="uMs-SG-fbN">
+                            <connections>
+                                <segue destination="eFb-xD-hpk" kind="presentation" id="aMW-Eb-cDd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapOnPollsView" destination="ig7-K8-xrR" id="WtF-au-EtA"/>
                         <outlet property="pollsTableView" destination="Jv8-ck-H9N" id="Y4u-s3-ZHQ"/>
@@ -57,7 +74,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFt-bv-g9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647.2" y="-434.03298350824593"/>
+            <point key="canvasLocation" x="1648.8" y="-434.03298350824593"/>
+        </scene>
+        <!--Make Poll View Controller-->
+        <scene sceneID="K6u-1u-NAJ">
+            <objects>
+                <viewController id="eFb-xD-hpk" customClass="MakePollViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vhD-wr-mOY"/>
+                        <viewControllerLayoutGuide type="bottom" id="3wP-3A-Kyv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BAn-jj-58p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="emw-xe-6bR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2404" y="-439"/>
         </scene>
     </scenes>
 </document>
