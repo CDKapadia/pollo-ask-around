@@ -5,6 +5,7 @@ import ast
 from flask import request, make_response, jsonify, abort
 from server import app
 from server.models import db, User, Post, Option
+from server.utils import haversine
 import sqlalchemy.exc
 
 db.create_all()
@@ -75,10 +76,28 @@ def get_posts_by_user(uuid):
         }
     return jsonify(response)
 
+
 @app.route('/post/@<lat>,<lng>', methods=['GET'])
 def get_posts_by_location(lat, lng):
-    # default radius if one is not specified
-    radius = request.args.get(r, 5)
+    # default radius if one is not specif
+    radius = request.args.get('r', 5)
+    lat = float(lat)
+    lng = float(lng)
+    # this can be optimized but i don't know the syntax
+    posts = Post.query.all()
+    posts = [post for post in posts if haversine(lng, lat, post.lng, post.lat) < radius]
+    response = {}
+    for i, post in enumerate(posts):
+        options = Option.query.filter_by(pid=post.pid).all()
+        author = User.query.filter_by(uid=post.uid).first()
+        response[i] = {
+                'q': post.question,
+                'lat': float(post.lat),
+                'lng': float(post.lng),
+                'author': author.uuid,
+                'options': [option.text for option in options]
+        }
+    return jsonify(response)
 
 
 @app.route('/post', methods=['POST'])
@@ -101,7 +120,6 @@ def create_post():
             abort(400)
         else:
             try:
-                print(passed_params)
                 user = User.query.filter_by(uuid=passed_params['uuid']).first()
                 post = Post(passed_params['q'], passed_params['lat'], passed_params['lng'], user)
 
@@ -114,7 +132,6 @@ def create_post():
                 db.session.commit()
                 response['message'] = 'post created'
             except:
-                print("id not found")
                 abort(400)
     return jsonify(response), 201
 
