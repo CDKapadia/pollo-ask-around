@@ -8,143 +8,107 @@
 
 import UIKit
 import MapKit
-//import CoreLocation
+import CoreLocation
 
-class PollTableAndViewController: UIViewController, UITableViewDataSource {
+class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate {
     @IBOutlet weak var pollsTableView: UITableView!
     
     @IBOutlet weak var mapOnPollsView: MKMapView!
-    
+
     var myArray = ["Mary", "Jane", "MaryJane"]
-
-    //var locManager: CLLocationManager!
-
+    
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // /user
-    
-        let uuid = UIDevice.current.identifierForVendor!.uuidString
-        //let uuid = "1"
-        var request = URLRequest(url: URL(string: ("http://52.43.103.143:3456/user/"+uuid))!)
+        
+        //sets datasource for tableview and waits for api call before showing table
+        pollsTableView.dataSource = self
+        pollsTableView.isHidden = true
+        
+        //disable user interaction with map
+        self.mapOnPollsView.isZoomEnabled = false;
+        self.mapOnPollsView.isScrollEnabled = false;
+        self.mapOnPollsView.isUserInteractionEnabled = false;
+        
+        //request for authorization
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        //start updating location once authorized
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        /*
+        //get users uuid
+        let uuid = "kerryisshit"
+        //let uuid = UIDevice.current.identifierForVendor!.uuidString
+        
+        //makes request for user with uuid of user does nothing if user exists creates if doesnt
+        var request = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid))!)
         request.httpMethod = "GET"
-        let queue:OperationQueue = OperationQueue()
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: URLResponse?, data: Data?, error: Error?) -> Void in
-            
-            do {
-                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,AnyObject> {
-                    print("ASynchronous\(jsonResult)")
-                    if ((jsonResult["error"]) != nil){
-                        self.createUser(ID: uuid)
-                    }
-                }
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-            
-            
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            self.connection(didReceiveResponse: response!, id: uuid)
         })
-        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/user/"+uuid+"/post"))!)
+        task.resume()
+ 
+        //makes request for posts by user, adds them to array, then updates and shows tableview
+        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid+"/posts"))!)
         request2.httpMethod = "GET"
-        let queue2:OperationQueue = OperationQueue()
-        
-        NSURLConnection.sendAsynchronousRequest(request2, queue: queue2, completionHandler:{ (response: URLResponse?, data: Data?, error: Error?) -> Void in
-            
-            do {
-                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,AnyObject> {
-                    print("ASynchronous\(jsonResult)")
-                    //for key in jsonResult{
-                        //let stringKey = String(describing: key)
-                      //  let dict = jsonResult[stringKey]
-                        //let post = dict?["q"] as! String
-                        //self.myArray.append(post)
-                    //}
-                    //self.pollsTableView.dataSource = self
+        let config2 = URLSessionConfiguration.default
+        let session2 = URLSession(configuration: config2)
+        let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
+            if(data != nil){
+                let jsonResult: JSON = JSON(data: data!)
+                print(jsonResult)
+                let numberPosts = jsonResult.count
+                var i = 0
+                while(i < numberPosts){
+                    let istring = String(i)
+                    self.myArray.append(jsonResult[istring]["q"].stringValue)
+                    i += 1
                 }
-            } catch let error as NSError {
-                print(error.localizedDescription)
+                self.pollsTableView.reloadData()
+                self.pollsTableView.isHidden = false;
             }
-            
-            
         })
+        task2.resume()
+ */
+    }
     
-        //     let locManager = CLLocationManager()
-        //locManager.requestAlwaysAuthorization()
-        //locManager.delegate = self
-        
-    //    locManager.requestAlwaysAuthorization()
-    //    locManager.requestWhenInUseAuthorization()
-        var currentLocation: CLLocation!
-        currentLocation = CLLocation(latitude: 38.648114, longitude: -90.311554)
-        //        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-          //          CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
-            //        currentLocation = locManager.location
-              //      centerMapOnLocation(location: currentLocation)
-        
-                //}
+    //centers map on current location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        let currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         centerMapOnLocation(location: currentLocation)
-        //pollsTableView.dataSource = self
-        print("I am here")
-        // Do any additional setup after loading the view.
+        /* do we want a pin???
+        let pin = MKPointAnnotation()
+        let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude)
+        pin.coordinate = coordinates
+        self.mapOnPollsView.addAnnotation(pin)
+        */
     }
     
-    //private func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-     //   switch status {
-    //    case .notDetermined:
-  //          print("A")
-            // If status has not yet been determied, ask for authorization
-    //        manager.requestAlwaysAuthorization()
-    //        break
-    //    case .authorizedWhenInUse:
-            // If authorized when in use
-    //        print("B")
-//manager.startUpdatingLocation()
-     //       var currentLocation: CLLocation!
-     //       currentLocation = manager.location
-     //       centerMapOnLocation(location: currentLocation)
-    //        break
-   //     case .authorizedAlways:
-    //        print("C")
-            // If always authorized
-   //         manager.startUpdatingLocation()
-//var currentLocation: CLLocation!
-   //         currentLocation = manager.location
-    //        centerMapOnLocation(location: currentLocation)
-//break
-   //     case .restricted:
-   //         print("D")
-            // If restricted by e.g. parental controls. User can't enable Location Services
-//
-//        case .denied:
-  //          // If user denied your app access to Location Services, but can grant access from Settings.app
-            
-  //          break
-   //     }
-    //}
-    
-    let regionRadius: CLLocationDistance = 1000
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
-        mapOnPollsView.setRegion(coordinateRegion, animated: true)
+    //called when first request is made for user and creates user in database if user is not found
+    func connection(didReceiveResponse response: URLResponse!, id: String) {
+        if let httpResponse = response as? HTTPURLResponse {
+            print(httpResponse.statusCode)
+            if (httpResponse.statusCode == 404){
+                createUser(ID: id)
+            }
+        } else {
+            assertionFailure("unexpected response")
+        }
     }
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //print("in cellForRow at \(indexPath)")
-        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        myCell.textLabel!.text = myArray[indexPath.row]
-        
-        return myCell
-        
-    }
+    //does the creating of user by sending post to server
     func createUser(ID: String){
-        var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/user")!)
+        var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/users")!)
         request.httpMethod = "POST"
         let postString = "uuid="+ID
         request.httpBody = postString.data(using: .utf8)
@@ -166,6 +130,29 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource {
         }
         task.resume()
     }
+    
+    //actual function for centering map
+    func centerMapOnLocation(location: CLLocation) {
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        mapOnPollsView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //print("in cellForRow at \(indexPath)")
+        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        myCell.textLabel!.text = myArray[indexPath.row]
+        
+        return myCell
+        
+    }
+
 
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */; };
 		68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B640511DE1349500881C34 /* MakePollViewController.swift */; };
 		CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */; };
 		CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		68B640511DE1349500881C34 /* MakePollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePollViewController.swift; sourceTree = "<group>"; };
 		CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pollo Ask Around.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				CB51B0B51DDBEB7F00A5ACCF /* Map */,
 				CB51B0B41DDBEB7900A5ACCF /* Settings */,
 				CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */,
+				3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */,
 				CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */,
 				CB51B0A71DDBEA3E00A5ACCF /* Assets.xcassets */,
 				CB51B0A91DDBEA3E00A5ACCF /* LaunchScreen.storyboard */,
@@ -208,6 +211,7 @@
 				68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */,
 				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
 				CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */,
+				3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */,
 				CB51B0B71DDBEBA800A5ACCF /* PollsViewController.swift in Sources */,
 				CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */,
 			);
