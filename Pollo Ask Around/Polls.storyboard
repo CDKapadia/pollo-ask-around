@@ -63,7 +63,7 @@
                     <navigationItem key="navigationItem" title="Loco Pollo" id="WQY-hK-tbT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uMs-SG-fbN">
                             <connections>
-                                <segue destination="eFb-xD-hpk" kind="presentation" id="aMW-Eb-cDd"/>
+                                <segue destination="TOA-tg-wMO" kind="presentation" id="aMW-Eb-cDd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,7 +76,7 @@
             </objects>
             <point key="canvasLocation" x="1648.8" y="-434.03298350824593"/>
         </scene>
-        <!--Make Poll View Controller-->
+        <!--Create Poll-->
         <scene sceneID="K6u-1u-NAJ">
             <objects>
                 <viewController id="eFb-xD-hpk" customClass="MakePollViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
@@ -87,12 +87,99 @@
                     <view key="view" contentMode="scaleToFill" id="BAn-jj-58p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test post, please ignore?" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8y-km-dKA">
+                                <rect key="frame" x="51" y="129" width="218" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is you question?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pf-GY-rT6">
+                                <rect key="frame" x="34" y="92" width="169" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Poll Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfg-HB-NDa">
+                                <rect key="frame" x="34" y="195" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="You can't tell me what to do" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qdD-JY-VeZ">
+                                <rect key="frame" x="152" y="339" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Option 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dn-rN-EoH">
+                                <rect key="frame" x="52" y="267" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Option 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYV-A1-R0S">
+                                <rect key="frame" x="51" y="341" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Ignored" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8lT-WP-78r">
+                                <rect key="frame" x="159" y="264" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Create Poll" id="KAb-bQ-7Qc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RcV-N1-fnC">
+                            <connections>
+                                <action selector="cancel:" destination="eFb-xD-hpk" id="rv4-TX-3cY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="QxL-8v-d4I">
+                            <connections>
+                                <action selector="postAction:" destination="eFb-xD-hpk" id="t2L-Cl-se2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pollOption1" destination="8lT-WP-78r" id="UaH-BD-XGi"/>
+                        <outlet property="pollOption2" destination="qdD-JY-VeZ" id="J1d-kS-n5V"/>
+                        <outlet property="pollPost" destination="QxL-8v-d4I" id="jmo-Ho-pGB"/>
+                        <outlet property="pollQuestion" destination="A8y-km-dKA" id="fMJ-Us-ciw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emw-xe-6bR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2404" y="-439"/>
+            <point key="canvasLocation" x="2404" y="398.95052473763121"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TnP-DF-9dJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TOA-tg-wMO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R2S-bq-F1F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eFb-xD-hpk" kind="relationship" relationship="rootViewController" id="GKW-3U-7Ku"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NX1-V1-5kX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2404" y="-439.43028485757122"/>
         </scene>
     </scenes>
 </document>
