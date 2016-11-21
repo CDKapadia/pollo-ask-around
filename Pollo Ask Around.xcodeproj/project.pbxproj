@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */; };
+		3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */; };
 		68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B640511DE1349500881C34 /* MakePollViewController.swift */; };
 		CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */; };
 		CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesViewController.swift; sourceTree = "<group>"; };
 		68B640511DE1349500881C34 /* MakePollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePollViewController.swift; sourceTree = "<group>"; };
 		CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pollo Ask Around.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */,
 				CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */,
 				68B640511DE1349500881C34 /* MakePollViewController.swift */,
+				3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */,
 			);
 			name = Polls;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */,
 				CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */,
 				68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */,
+				3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */,
 				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
 				CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */,
 				3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */,

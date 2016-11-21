@@ -11,10 +11,17 @@ import UIKit
 class MakePollViewController: UIViewController {
 
     @IBOutlet weak var pollQuestion: UITextField!
-    
     @IBOutlet weak var pollOption1: UITextField!
     
     @IBOutlet weak var pollOption2: UITextField!
+    @IBOutlet weak var pollOption3: UITextField!
+    @IBOutlet weak var pollOption4: UITextField!
+    @IBOutlet weak var pollOption5: UITextField!
+    @IBOutlet weak var pollOption6: UITextField!
+    @IBOutlet weak var pollOption7: UITextField!
+    @IBOutlet weak var pollOption8: UITextField!
+    @IBOutlet weak var pollOption9: UITextField!
+    @IBOutlet weak var pollOption10: UITextField!
     
     
     override func viewDidLoad() {

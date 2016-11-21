@@ -10,13 +10,13 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate {
+class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate, UITableViewDelegate {
     @IBOutlet weak var pollsTableView: UITableView!
     
     @IBOutlet weak var mapOnPollsView: MKMapView!
 
-    var myArray = ["Mary", "Jane", "MaryJane"]
-    
+    var myArray = [String]()
+    var saveJson: JSON = [:]
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         
         //sets datasource for tableview and waits for api call before showing table
         pollsTableView.dataSource = self
-        pollsTableView.isHidden = true
+        //pollsTableView.isHidden = true
         
         //disable user interaction with map
         self.mapOnPollsView.isZoomEnabled = false;
@@ -41,7 +41,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        /*
+        
         //get users uuid
         let uuid = "kerryisshit"
         //let uuid = UIDevice.current.identifierForVendor!.uuidString
@@ -64,7 +64,8 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
             if(data != nil){
                 let jsonResult: JSON = JSON(data: data!)
-                print(jsonResult)
+                self.saveJson = jsonResult
+                //print(jsonResult)
                 let numberPosts = jsonResult.count
                 var i = 0
                 while(i < numberPosts){
@@ -72,12 +73,13 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
                     self.myArray.append(jsonResult[istring]["q"].stringValue)
                     i += 1
                 }
+                //self.pollsTableView.isHidden = false;
                 self.pollsTableView.reloadData()
-                self.pollsTableView.isHidden = false;
+                
+                //print(self.saveJson)
             }
         })
-        task2.resume()
- */
+        task2.resume() 
     }
     
     //centers map on current location
@@ -152,9 +154,45 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         return myCell
         
     }
+    var currentIndexPath: IndexPath?
+   /*
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        currentIndexPath = indexPath
+        self.performSegue(withIdentifier: "ShowVotes", sender: nil)
+    }
+  /*
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowVotes" {
+            if let destination = segue.destination as? VotesViewController {
+                destination.test = myArray[currentIndexPath!.row]
+            }
+        }
+}
+ */
 
+  /*
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowVotes", sender: nil)
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowVotes" {
+            if let destination = segue.destination as? VotesViewController{
+            destination.test = myArray[currentIndexPath!.row]
+            }
+        }
+    }
+ 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = pollsTableView.indexPathForSelectedRow{
+            let selectedRow = indexPath.row
+            let detailVC = segue.destination as! VotesViewController
+            detailVC.test = myArray[selectedRow]
+        }
+    }
+ */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
