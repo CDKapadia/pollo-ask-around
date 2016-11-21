@@ -154,12 +154,19 @@ def create_post():
     return jsonify(response), 201
 
 
+@app.route('/posts', methods=['DELETE'])
+def delete_post():
+    # TODO: implementation
+    pass
+
 @app.route('/votes/<int:oid>', methods=['PATCH'])
 def vote(oid):
+    # TODO: validate that user has not voted already
     try:
         op = request.form['op']
         uuid = request.form['uuid']
         pid = request.form['pid']
+        user = User.query.filter_by(uuid=uuid).first()
         option = Option.query.filter_by(oid=oid).first()
         if op == 'add':
             option.votes += 1
