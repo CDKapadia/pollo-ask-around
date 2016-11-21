@@ -5,7 +5,6 @@ import ast
 from flask import request, make_response, jsonify, abort
 from server import app
 from server.models import db, User, Post, Option
-from server.utils import haversine
 import sqlalchemy.exc
 
 db.create_all()
@@ -13,36 +12,42 @@ db.create_all()
 
 @app.errorhandler(404)
 def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return make_response(jsonify({'error': error.description}), 404)
 
 
 @app.errorhandler(400)
 def bad_request(error):
-    return make_response(jsonify({'error': 'Bad Request'}), 400)
+    return make_response(jsonify({'error': error.description}), 400)
+
+
+@app.errorhandler(409)
+def already_exists(error):
+    return make_response(jsonify({'error': error.description}), 409)
 
 
 @app.errorhandler(500)
 def internal_error(error):
-    return make_response(jsonify({'error': 'Internal Servor Error'}), 500)
+    return make_response(jsonify({'error': 'internal server error'}), 500)
 
 
-@app.route('/user/<uuid>', methods=['GET'])
+@app.route('/users/<uuid>', methods=['GET'])
 def get_user(uuid):
     response = {}
     user = User.query.filter_by(uuid=uuid).first()
     if user:
         response['user'] = user.uid
     else:
-        abort(404)
+        # return jsonify({'test':'test'}), 200
+        abort(404, 'user with id %s not found' % uuid)
     return jsonify(response)
 
-# create user
-@app.route('/user', methods=['POST'])
+
+@app.route('/users', methods=['POST'])
 def create_user():
     response = {}
     uuid = request.form.get('uuid')
     if uuid is None:
-        abort(400)
+        abort(404, 'no uuid entered')
     else:
         user = User(uuid)
         try:
@@ -50,21 +55,28 @@ def create_user():
             db.session.commit()
             response['message'] = 'created'
         except sqlalchemy.exc.IntegrityError:
-            abort(400)
+            abort(409, 'uuid already exists')
         except:
-            abort(500)
+            abort(500, 'Internal server error')
     return jsonify(response), 201
 
 
-@app.route('/user/<uuid>/post', methods=['GET'])
+@app.route('/users/<uuid>/posts', methods=['GET'])
 def get_posts_by_user(uuid):
-    response = {}
     user = User.query.filter_by(uuid=uuid).first()
 
     if user is None:
-        abort(400)
+        abort(404, 'user with uuid %s not found' % uuid)
 
-    posts = user.posts.all()
+    results_per_page = 10
+    # start on page 0 by default
+    try:
+        page = int(request.args.get('page', 0))
+    except ValueError:
+        abort(400, 'page was not a number')
+
+    posts = user.posts[page * results_per_page: (page + 1) * results_per_page]
+    response = {}
     for i, post in enumerate(posts):
         options = Option.query.filter_by(pid=post.pid).all()
         response[i] = {
@@ -72,20 +84,28 @@ def get_posts_by_user(uuid):
                 'lat': float(post.lat),
                 'lng': float(post.lng),
                 'author': uuid,
-                'options': [option.text for option in options]
+                'options': {option.oid: {'votes': option.votes, 'text': option.text} for option in options}
         }
     return jsonify(response)
 
 
-@app.route('/post/@<lat>,<lng>', methods=['GET'])
+@app.route('/posts/@<lat>,<lng>', methods=['GET'])
 def get_posts_by_location(lat, lng):
-    # default radius if one is not specif
+    # default radius if one is not specified
     radius = request.args.get('r', 5)
-    lat = float(lat)
-    lng = float(lng)
-    # this can be optimized but i don't know the syntax
-    posts = Post.query.all()
-    posts = [post for post in posts if haversine(lng, lat, post.lng, post.lat) < radius]
+
+    try:
+        # dummy Post object with location for use with filter
+        curr = Post("", float(lat), float(lng), User(""))
+
+        # default page 0
+        page = int(request.args.get('page', 0))
+    except ValueError:
+        abort(400, 'please enter decimals for lat and long')
+
+    results_per_page = 10
+
+    posts = Post.query.filter(Post.distance(curr) < 5)[page * results_per_page: (page + 1) * results_per_page]
     response = {}
     for i, post in enumerate(posts):
         options = Option.query.filter_by(pid=post.pid).all()
@@ -95,12 +115,12 @@ def get_posts_by_location(lat, lng):
                 'lat': float(post.lat),
                 'lng': float(post.lng),
                 'author': author.uuid,
-                'options': [option.text for option in options]
+                'options': {option.oid: {'votes': option.votes, 'text': option.text} for option in options}
         }
     return jsonify(response)
 
 
-@app.route('/post', methods=['POST'])
+@app.route('/posts', methods=['POST'])
 def create_post():
     required_args = ['q', 'lat', 'lng', 'uuid', 'options']
     passed_params = {}
@@ -110,30 +130,50 @@ def create_post():
     for key in required_args:
         passed_params[key] = request.form.get(key, None)
 
-    # check that all required parameters were passed
     if any(passed_params[key] is None for key in required_args):
-        abort(400)
-    else:
-        try:
-            options = ast.literal_eval(passed_params['options'])
-        except:
-            abort(400)
-        else:
-            try:
-                user = User.query.filter_by(uuid=passed_params['uuid']).first()
-                post = Post(passed_params['q'], passed_params['lat'], passed_params['lng'], user)
+        # not all parameters were passed
+        abort(400, 'missing parameter')
 
-                db.session.add(post)
-                db.session.flush()
+    try:
+        options = ast.literal_eval(passed_params['options'])
+        user = User.query.filter_by(uuid=passed_params['uuid']).first()
+        post = Post(passed_params['q'], passed_params['lat'], passed_params['lng'], user)
 
-                for option in options:
-                    db.session.add(Option(option, post.pid))
+        db.session.add(post)
+        db.session.flush()
 
-                db.session.commit()
-                response['message'] = 'post created'
-            except:
-                abort(400)
+        for option in options:
+            db.session.add(Option(option, post.pid))
+
+        db.session.commit()
+        response['message'] = 'post created'
+    except SyntaxError:
+        abort(400, 'error parsing options')
+    except AttributeError:
+        abort(404, 'could not find user with uuid %s' % uuid)
     return jsonify(response), 201
+
+
+@app.route('/votes/<int:oid>', methods=['PATCH'])
+def vote(oid):
+    try:
+        op = request.form['op']
+        uuid = request.form['uuid']
+        pid = request.form['pid']
+        option = Option.query.filter_by(oid=oid).first()
+        if op == 'add':
+            option.votes += 1
+        elif op == 'remove':
+            option.votes -= 1
+        else:
+            raise ValueError()
+        db.commit()
+    except KeyError:
+        abort(400, 'no operation specified')
+    except ValueError:
+        abort(400, 'not valid operation')
+    except AttributeError:
+        abort(404, 'option with id %i not found' % oid)
 
 
 @app.route('/test/')
