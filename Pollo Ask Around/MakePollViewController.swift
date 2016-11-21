@@ -44,18 +44,19 @@ class MakePollViewController: UIViewController {
         let question = pollQuestion.text!
         let option1: String = pollOption1.text!
         let option2: String = pollOption2.text!
+        let option3: String = pollOption3.text!
         let latitude = 38.648114
         let longitude = -90.311554
-        let uuid = "kerryisshit"
+        let uuid = "presentation"
         //let uuid = UIDevice.current.identifierForVendor!.uuidString
         //let uuid = "hri1o2jd-uto1-74jd-pqjfoe1g0317"
-        let roption2 = option2.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
+        //let roption2 = option2.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
         var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/posts")!)
         request.httpMethod = "POST"
         let postString1 = "q="+question
         let postString2 = "&lat="+String(latitude)+"&lng="+String(longitude)
         let postString3 = "&uuid="+uuid
-        let postString4 = "&options=['"+option1+"','"+roption2+"']"
+        let postString4 = "&options=['"+option1+"','"+option2+"','"+option3+"']"
         let postString = postString1 + postString2 + postString3 + postString4
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

@@ -43,7 +43,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         }
         
         //get users uuid
-        let uuid = "kerryisshit"
+        let uuid = "presentation"
         //let uuid = UIDevice.current.identifierForVendor!.uuidString
         
         //makes request for user with uuid of user does nothing if user exists creates if doesnt
@@ -192,7 +192,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             detailVC.test = myArray[selectedRow]
         }
     }
- */
+*/*/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
