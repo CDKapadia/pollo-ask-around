@@ -15,7 +15,8 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     
     @IBOutlet weak var mapOnPollsView: MKMapView!
 
-    var myArray = [String]()
+    //var myArray = [String]()
+    var myArray = ["What do tigers dream of when they take a little tiger snooze?", "jane", "bob"]
     var saveJson: JSON = [:]
     var locationManager = CLLocationManager()
     
@@ -52,7 +53,12 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            if (response != nil){
             self.connection(didReceiveResponse: response!, id: uuid)
+            }
+            else{
+                print ("response is nil")
+            }
         })
         task.resume()
  
@@ -148,8 +154,12 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //print("in cellForRow at \(indexPath)")
-        let myCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as! PollTableCell
+        //let myCell = UITableViewCell(style: .default, reuseIdentifier: nil) as! PollTableCell
+        myCell.textLabel!.numberOfLines = 3
+        myCell.textLabel!.lineBreakMode = .byWordWrapping
         myCell.textLabel!.text = myArray[indexPath.row]
+        myCell.pollName = myArray[indexPath.row]
         
         return myCell
         
@@ -198,15 +208,21 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        //we can make a custom class for each poll to store data. Or do another request.
+        //this will allow us to pass the poll info to the next screen for another request.
+        
+        let nextController = segue.destination as! VotesViewController
+        let theSender = sender as! PollTableCell
+        nextController.pollTitle = theSender.pollName
+        
     }
-    */
+    
 
 }
