@@ -9,15 +9,17 @@
 import UIKit
 
 class VotesViewController: UIViewController {
-
-    @IBOutlet weak var texttest: UITextField!
-    var test = String()
+    
+    @IBOutlet weak var titleOfPoll: UILabel!
+    
+    
+    var pollTitle = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        texttest.text = test
+       titleOfPoll.text = pollTitle
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
