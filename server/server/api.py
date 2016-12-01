@@ -1,5 +1,5 @@
 '''
-    views file that defines behavior for each webppage
+    defines behavior for each api address
 '''
 import ast
 from flask import request, make_response, jsonify, abort
@@ -210,16 +210,17 @@ def change_vote(oid):
     if operation is None:
         abort(400, 'no operation specified')
 
+    vote = Vote(uuid, option.pid, oid)
+
     if operation == 'add':
         option.votes += 1
+        db.session.add(vote)
     elif operation == 'remove':
         option.votes -= 1
+        db.session.delete(vote)
     else:
         abort(400, 'not valid operation')
 
-    vote = Vote(uuid, option.pid, oid)
-
-    db.session.add(vote)
     db.session.commit()
     response = {'message': 'voted'}
     return jsonify(response)
