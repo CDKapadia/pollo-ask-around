@@ -44,10 +44,11 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         }
         
         //get users uuid
-        let uuid = "presentation"
-        //let uuid = UIDevice.current.identifierForVendor!.uuidString
+        //let uuid = "presentation"
+        let uuid = UIDevice.current.identifierForVendor!.uuidString
         
         //makes request for user with uuid of user does nothing if user exists creates if doesnt
+        
         var request = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid))!)
         request.httpMethod = "GET"
         let config = URLSessionConfiguration.default
@@ -61,6 +62,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             }
         })
         task.resume()
+ 
  
         //makes request for posts by user, adds them to array, then updates and shows tableview
         var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid+"/posts"))!)
@@ -91,7 +93,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     //centers map on current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
         let currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         centerMapOnLocation(location: currentLocation)
         /* do we want a pin???
