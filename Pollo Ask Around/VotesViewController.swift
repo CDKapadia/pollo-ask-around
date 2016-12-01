@@ -18,6 +18,7 @@ class VotesViewController: UIViewController {
     var pollId = String()
     var isDone = false
     var indexid = [String()]
+    var votesArray : [Int] = []
     
     
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class VotesViewController: UIViewController {
                 for (id,dict) in jsonResult{
                     
                     let option = String(dict["text"].stringValue)
+                    self.votesArray.append(Int(dict["votes"].stringValue)!)
                     self.myArray.append(option!)
                     self.indexid.append(id)
                 }
@@ -49,6 +51,7 @@ class VotesViewController: UIViewController {
         //optionsStackView.translatesAutoresizingMaskIntoConstraints = false;
         // Do any additional setup after loading the view.
         var tag = 1
+        let sum = votesArray.reduce(0,+)
         for name in myArray{
             let button = UIButton()
             //button.backgroundColor = .orange
@@ -56,6 +59,21 @@ class VotesViewController: UIViewController {
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.adjustsFontSizeToFitWidth = true
             button.titleLabel!.numberOfLines = 1
+
+            var imageSize = CGSize()
+            if(votesArray.count>0){
+                imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
+            }else{
+                imageSize = CGSize(width:0, height: 0)
+            }
+//            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
+            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
+            imageView.backgroundColor = .green
+            imageView.alpha = 0.25
+            imageView.isUserInteractionEnabled = false;
+            imageView.isExclusiveTouch = false;
+            button.addSubview(imageView)
+//            button.sendSubview(toBack: imageView) // goes behind the collection
             
             if tag == 3{
                 button.backgroundColor = .orange
@@ -67,7 +85,18 @@ class VotesViewController: UIViewController {
             tag+=1
             button.addTarget(self, action: #selector(optionChosen), for: .touchUpInside)
             optionsStackView.addArrangedSubview(button)
+        
+            
         }
+//        let sum = votesArray.reduce(0,+)
+//        print (sum)
+//        for madeButton in optionsStackView.arrangedSubviews as! [UIButton]{
+//            
+//            let imageSize = CGSize(width: optionsStackView.frame.size.width, height: 10)
+//            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
+//            imageView.backgroundColor = .green
+//            madeButton.addSubview(imageView)
+//        }
         
         //dummy for selecting voted
         
