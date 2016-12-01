@@ -211,7 +211,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         if let nextController = segue.destination as? VotesViewController{
             //If going to a CURRENT POLL
             let theSender = sender as! PollTableCell
-            nextController.pollTitle = ids[theSender.pollName]!
+            nextController.pollId = ids[theSender.pollName]!
             //nextController.pollTitle = ids[myArray[3]]!
         }
         else{
