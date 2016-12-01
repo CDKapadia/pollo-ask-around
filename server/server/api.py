@@ -194,7 +194,6 @@ def get_votes_from_user(pid, uuid):
 
 @app.route('/options/<int:oid>', methods=['PATCH'])
 def change_vote(oid):
-    print(request.data)
     data = json.loads(request.data.decode('utf-8'))
     uuid = data.get('uuid')
 
