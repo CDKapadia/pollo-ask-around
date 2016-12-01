@@ -38,27 +38,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9S-Yn-kWG" userLabel="title">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9S-Yn-kWG" userLabel="title">
                                 <rect key="frame" x="16" y="72" width="343" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="114" id="wao-XM-0pB"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NA2-Tz-DRL">
-                                <rect key="frame" x="47" y="235" width="106" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Mauling Zebras"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1K-hc-mdn">
-                                <rect key="frame" x="47" y="273" width="224" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Halle Berry in her Catwoman suit"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Yq-CA-kXI">
+                                <rect key="frame" x="16" y="194" width="343" height="397"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Yq-CA-kXI" firstAttribute="top" secondItem="U9S-Yn-kWG" secondAttribute="bottom" constant="8" symbolic="YES" id="2qO-61-IHd"/>
+                            <constraint firstItem="U9S-Yn-kWG" firstAttribute="trailing" secondItem="5Yq-CA-kXI" secondAttribute="trailing" id="9Em-YP-HPd"/>
+                            <constraint firstItem="U9S-Yn-kWG" firstAttribute="leading" secondItem="5Yq-CA-kXI" secondAttribute="leading" id="gaB-ab-4Zp"/>
+                            <constraint firstItem="U9S-Yn-kWG" firstAttribute="leading" secondItem="chP-MR-p1Q" secondAttribute="leadingMargin" id="kJS-DW-DtQ"/>
+                            <constraint firstItem="U9S-Yn-kWG" firstAttribute="trailing" secondItem="chP-MR-p1Q" secondAttribute="trailingMargin" id="nZz-LF-q1D"/>
+                            <constraint firstItem="U9S-Yn-kWG" firstAttribute="top" secondItem="XRa-ha-09h" secondAttribute="bottom" constant="8" symbolic="YES" id="wNM-Sh-gHR"/>
+                            <constraint firstItem="avu-XP-l2Z" firstAttribute="top" secondItem="5Yq-CA-kXI" secondAttribute="bottom" constant="76" id="xMU-oT-d9X"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="optionsStackView" destination="5Yq-CA-kXI" id="Cqh-yg-v8i"/>
                         <outlet property="titleOfPoll" destination="U9S-Yn-kWG" id="VrL-bC-t06"/>
                     </connections>
                 </viewController>
@@ -86,7 +91,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6H-jl-dPs" id="2WN-fb-nkZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" label="theCell"/>
