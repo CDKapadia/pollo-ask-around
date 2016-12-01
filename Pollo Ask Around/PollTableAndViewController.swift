@@ -15,17 +15,19 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     
     @IBOutlet weak var mapOnPollsView: MKMapView!
 
-    //var myArray = [String]()
-    var myArray = ["What do tigers dream of when they take a little tiger snooze?", "jane", "bob"]
-    var saveJson: JSON = [:]
+    var myArray: [String] = []
+    //var saveJson: JSON = [:]
     var locationManager = CLLocationManager()
+    var latitude: String = ""
+    var longitude: String = ""
+    var ids: [String:String] = [:]
+    var hasLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //sets datasource for tableview and waits for api call before showing table
         pollsTableView.dataSource = self
-        //pollsTableView.isHidden = true
         
         //disable user interaction with map
         self.mapOnPollsView.isZoomEnabled = false;
@@ -48,7 +50,6 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         let uuid = UIDevice.current.identifierForVendor!.uuidString
         
         //makes request for user with uuid of user does nothing if user exists creates if doesnt
-        
         var request = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid))!)
         request.httpMethod = "GET"
         let config = URLSessionConfiguration.default
@@ -62,38 +63,39 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             }
         })
         task.resume()
- 
- 
         //makes request for posts by user, adds them to array, then updates and shows tableview
-        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid+"/posts"))!)
+        
+        /*//var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid+"/posts"))!)
+        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/@"+latitude+","+longitude))!)
+        print("http://52.43.103.143:3456/posts/@"+latitude+","+longitude)
         request2.httpMethod = "GET"
         let config2 = URLSessionConfiguration.default
         let session2 = URLSession(configuration: config2)
         let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
             if(data != nil){
                 let jsonResult: JSON = JSON(data: data!)
-                self.saveJson = jsonResult
-                //print(jsonResult)
-                let numberPosts = jsonResult.count
-                var i = 0
-                while(i < numberPosts){
-                    let istring = String(i)
-                    self.myArray.append(jsonResult[istring]["q"].stringValue)
-                    i += 1
+                //self.saveJson = jsonResult
+                for (id,dict) in jsonResult{
+                    let question = String(dict["q"].stringValue)
+                    self.myArray.append(question!)
+                    self.ids[question!] = id
                 }
-                //self.pollsTableView.isHidden = false;
+                print(jsonResult)
                 self.pollsTableView.reloadData()
-                
-                //print(self.saveJson)
             }
         })
-        task2.resume() 
+        task2.resume()
+ */
     }
     
     //centers map on current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        self.latitude = String(locValue.latitude)
+       // print(latitude)
+        self.longitude = String(locValue.longitude)
+       // print(longitude)
         let currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         centerMapOnLocation(location: currentLocation)
         /* do we want a pin???
@@ -102,6 +104,28 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         pin.coordinate = coordinates
         self.mapOnPollsView.addAnnotation(pin)
         */
+        if (self.hasLoaded == false){
+        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/@"+self.latitude+","+self.longitude))!)
+       // print("http://52.43.103.143:3456/posts/@"+latitude+","+longitude)
+        request2.httpMethod = "GET"
+        let config2 = URLSessionConfiguration.default
+        let session2 = URLSession(configuration: config2)
+        let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
+            if(data != nil){
+                let jsonResult: JSON = JSON(data: data!)
+                //self.saveJson = jsonResult
+                for (id,dict) in jsonResult{
+                    let question = String(dict["q"].stringValue)
+                    self.myArray.append(question!)
+                    self.ids[question!] = id
+                }
+                //print(jsonResult)
+                self.pollsTableView.reloadData()
+            }
+        })
+        task2.resume()
+        self.hasLoaded = true
+        }
     }
     
     //called when first request is made for user and creates user in database if user is not found
@@ -161,51 +185,15 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         myCell.textLabel!.numberOfLines = 3
         myCell.textLabel!.lineBreakMode = .byWordWrapping
         myCell.textLabel!.text = myArray[indexPath.row]
+        
+        
         myCell.pollName = myArray[indexPath.row]
         
         return myCell
         
     }
     var currentIndexPath: IndexPath?
-   /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        currentIndexPath = indexPath
-        self.performSegue(withIdentifier: "ShowVotes", sender: nil)
-    }
-  /*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowVotes" {
-            if let destination = segue.destination as? VotesViewController {
-                destination.test = myArray[currentIndexPath!.row]
-            }
-        }
-}
- */
-
-  /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "ShowVotes", sender: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowVotes" {
-            if let destination = segue.destination as? VotesViewController{
-            destination.test = myArray[currentIndexPath!.row]
-            }
-        }
-    }
- 
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = pollsTableView.indexPathForSelectedRow{
-            let selectedRow = indexPath.row
-            let detailVC = segue.destination as! VotesViewController
-            detailVC.test = myArray[selectedRow]
-        }
-    }
-*/*/
-    override func didReceiveMemoryWarning() {
+       override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -223,7 +211,8 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         if let nextController = segue.destination as? VotesViewController{
             //If going to a CURRENT POLL
             let theSender = sender as! PollTableCell
-            nextController.pollTitle = theSender.pollName
+            nextController.pollTitle = ids[theSender.pollName]!
+            //nextController.pollTitle = ids[myArray[3]]!
         }
         else{
             //IF going make a new poll. The plus sign
