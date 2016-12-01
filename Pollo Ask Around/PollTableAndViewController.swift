@@ -218,9 +218,16 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         //we can make a custom class for each poll to store data. Or do another request.
         //this will allow us to pass the poll info to the next screen for another request.
         
-        let nextController = segue.destination as! VotesViewController
-        let theSender = sender as! PollTableCell
-        nextController.pollTitle = theSender.pollName
+        if let nextController = segue.destination as? VotesViewController{
+            //If going to a CURRENT POLL
+            let theSender = sender as! PollTableCell
+            nextController.pollTitle = theSender.pollName
+        }
+        else{
+            //IF going make a new poll. The plus sign
+            //do nothing right now.
+        }
+
         
     }
     
