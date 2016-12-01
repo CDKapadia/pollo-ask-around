@@ -100,45 +100,61 @@ class MakePollViewController: UIViewController, CLLocationManagerDelegate {
     }
     @IBAction func postAction(_ sender: UIBarButtonItem) {
         checkOptions()
-        var optionsString = "&options=['"
-        var index = 0
-        while index < options.count - 1{
-            let tempString = options[index] + "','"
-            optionsString += tempString
-            index += 1
-        }
-        optionsString = optionsString + options[options.count-1]+"']"
-        if pollQuestion.text! != "" {
-            let question = "q="+pollQuestion.text!.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
-            let lat = "&lat="+String(self.latitude)
-            let long = "&lng="+String(self.longitude)
-            let uuid = "&uuid="+UIDevice.current.identifierForVendor!.uuidString
-            var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/posts")!)
-            request.httpMethod = "POST"
-            let postString = question + lat + long + uuid + optionsString
-            request.httpBody = postString.data(using: .utf8)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    // check for fundamental networking error
-                    //print("error=\(error)")
-                    return
-                }
-                
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    // check for http errors
-                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                    print("response = \(response)")
-                }
-                
-                let responseString = String(data: data, encoding: .utf8)
-                print("responseString = \(responseString)")
+        if options.count > 1 {
+            var optionsString = "&options=['"
+            var index = 0
+            while index < options.count - 1{
+                let tempString = options[index] + "','"
+                optionsString += tempString
+                index += 1
             }
-            task.resume()
-            dismiss(animated: true, completion: nil)
+            optionsString = optionsString + options[options.count-1]+"']"
+            if pollQuestion.text! != ""{
+                let question = "q="+pollQuestion.text!.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
+                let lat = "&lat="+String(self.latitude)
+                let long = "&lng="+String(self.longitude)
+                let uuid = "&uuid="+UIDevice.current.identifierForVendor!.uuidString
+                var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/posts")!)
+                request.httpMethod = "POST"
+                let postString = question + lat + long + uuid + optionsString
+                request.httpBody = postString.data(using: .utf8)
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        // check for fundamental networking error
+                        //print("error=\(error)")
+                        return
+                    }
+                    
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                        // check for http errors
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response = \(response)")
+                    }
+                    
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString = \(responseString)")
+                }
+                task.resume()
+                dismiss(animated: true, completion: nil)
+            }
+            else{
+                let alertController = UIAlertController(title: "Alert", message:
+                    "Question cannot be blank", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
-        else{
+        else if pollQuestion.text! != ""{
             let alertController = UIAlertController(title: "Alert", message:
-                "Question field cannot be blank", preferredStyle: UIAlertControllerStyle.alert)
+                "Please enter at least 2 options", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else {
+            let alertController = UIAlertController(title: "Alert", message:
+                "Please enter a question and at least 2 options", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
             
             self.present(alertController, animated: true, completion: nil)

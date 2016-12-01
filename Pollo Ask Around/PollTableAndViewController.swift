@@ -22,10 +22,16 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     var longitude: String = ""
     var ids: [String:String] = [:]
     var hasLoaded = false
+    //var refreshControl = UIRefreshControl()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: Selector(("refresh:")), for: UIControlEvents.valueChanged)
+        self.pollsTableView.addSubview(refreshControl)
+        */
         //sets datasource for tableview and waits for api call before showing table
         pollsTableView.dataSource = self
         
@@ -63,32 +69,37 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             }
         })
         task.resume()
-        //makes request for posts by user, adds them to array, then updates and shows tableview
-        
-        /*//var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/users/"+uuid+"/posts"))!)
-        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/@"+latitude+","+longitude))!)
-        print("http://52.43.103.143:3456/posts/@"+latitude+","+longitude)
+    }
+   
+    //func refresh(sender:AnyObject) {
+    //    populateTableView()
+    //}
+ 
+    //makes request to api and populates tableview
+    func populateTableView(){
+        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/@"+self.latitude+","+self.longitude))!)
         request2.httpMethod = "GET"
         let config2 = URLSessionConfiguration.default
         let session2 = URLSession(configuration: config2)
         let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
             if(data != nil){
                 let jsonResult: JSON = JSON(data: data!)
-                //self.saveJson = jsonResult
                 for (id,dict) in jsonResult{
                     let question = String(dict["q"].stringValue)
-                    self.myArray.append(question!)
-                    self.ids[question!] = id
+                    self.myArray.append(question!) //add question to table
+                    self.ids[question!] = id //keeps track of id and question in dictionary
                 }
-                print(jsonResult)
-                self.pollsTableView.reloadData()
+                //print(jsonResult)
+                //print(self.myArray)
+                //print(self.ids)
+                DispatchQueue.main.async {
+                    self.pollsTableView.reloadData() //loads table view
+                }
             }
         })
         task2.resume()
- */
     }
-    
-    //centers map on current location
+    //centers map on current location and populates tableview with questions
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         //print("locations = \(locValue.latitude) \(locValue.longitude)")
@@ -105,25 +116,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         self.mapOnPollsView.addAnnotation(pin)
         */
         if (self.hasLoaded == false){
-        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/@"+self.latitude+","+self.longitude))!)
-       // print("http://52.43.103.143:3456/posts/@"+latitude+","+longitude)
-        request2.httpMethod = "GET"
-        let config2 = URLSessionConfiguration.default
-        let session2 = URLSession(configuration: config2)
-        let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
-            if(data != nil){
-                let jsonResult: JSON = JSON(data: data!)
-                //self.saveJson = jsonResult
-                for (id,dict) in jsonResult{
-                    let question = String(dict["q"].stringValue)
-                    self.myArray.append(question!)
-                    self.ids[question!] = id
-                }
-                //print(jsonResult)
-                self.pollsTableView.reloadData()
-            }
-        })
-        task2.resume()
+        populateTableView()
         self.hasLoaded = true
         }
     }
