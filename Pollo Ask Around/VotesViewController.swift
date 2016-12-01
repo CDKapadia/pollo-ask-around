@@ -18,10 +18,31 @@ class VotesViewController: UIViewController {
     var pollId = String()
     var isDone = false
     var indexid = [String()]
-    
+    var userVoteId: String = ""
+    var hasVoted = false
+    var hasBeenDeleted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.makeView()
+    }
+    func makeView(){
+        let uuid = UIDevice.current.identifierForVendor!.uuidString
+        
+        var request2 = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/"+pollId+"/votes/users/"+uuid))!)
+        request2.httpMethod = "GET"
+        let config2 = URLSessionConfiguration.default
+        let session2 = URLSession(configuration: config2)
+        let task2 = session2.dataTask(with: request2, completionHandler: {(data, response, error) in
+            if(data != nil){
+                let jsonResult: JSON = JSON(data: data!)
+                if jsonResult["voted"].stringValue == "true" {
+                    self.hasVoted = true
+                    self.userVoteId = jsonResult["oid"].stringValue
+                }
+            }
+        })
+        task2.resume()
         var request = URLRequest(url: URL(string: ("http://52.43.103.143:3456/posts/"+self.pollId+"/options"))!)
         request.httpMethod = "GET"
         let config = URLSessionConfiguration.default
@@ -44,7 +65,7 @@ class VotesViewController: UIViewController {
         })
         task.resume()
         while !isDone{
-            
+            //wait for array to populate
         }
         //optionsStackView.translatesAutoresizingMaskIntoConstraints = false;
         // Do any additional setup after loading the view.
@@ -57,11 +78,11 @@ class VotesViewController: UIViewController {
             button.titleLabel?.adjustsFontSizeToFitWidth = true
             button.titleLabel!.numberOfLines = 1
             
-            if tag == 3{
+            if indexid[tag] == userVoteId{
                 button.backgroundColor = .orange
                 
             }
-           
+            
             //maybe make a custon button
             button.tag = tag
             tag+=1
@@ -70,10 +91,6 @@ class VotesViewController: UIViewController {
         }
         
         //dummy for selecting voted
-        
-
-        
-    
     }
     /*
     func makeButtons(){
@@ -103,6 +120,7 @@ class VotesViewController: UIViewController {
     }
     
     func optionChosen(sender: UIButton!) {
+        if !hasVoted{
         var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+indexid[sender.tag])!)
         request.httpMethod = "PATCH"
         let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
@@ -127,8 +145,70 @@ class VotesViewController: UIViewController {
             print("responseString = \(responseString!)")
         }
         task.resume()
-        print("option is ", indexid[sender.tag])
-        print("Button ", sender.tag ," tapped")
+        }
+        else if hasVoted && userVoteId == indexid[sender.tag]{
+            //do nothing
+        }
+        else {
+            let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
+            var request2 = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+self.userVoteId)!)
+            request2.httpMethod = "PATCH"
+            let op2 = "\"op\":\"remove\""
+            let postString2 = "{"+uuid+"\"," + op2 + "}"
+            // print(postString)
+            request2.httpBody = postString2.data(using: .utf8)
+            let task2 = URLSession.shared.dataTask(with: request2) { data, response, error in
+                guard let data = data, error == nil else {
+                    // check for fundamental networking error
+                    //print("error=\(error)")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(responseString!)")
+                self.hasBeenDeleted = true;
+                
+            }
+            task2.resume()
+            while !hasBeenDeleted{
+                //wait for vote to be deleted
+            }
+            var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+indexid[sender.tag])!)
+            request.httpMethod = "PATCH"
+            let op = "\"op\":\"add\""
+            let postString = "{"+uuid+"\"," + op + "}"
+            print(postString)
+            request.httpBody = postString.data(using: .utf8)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    // check for fundamental networking error
+                    //print("error=\(error)")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(responseString!)")
+                //self.hasBeenDeleted = false
+                //self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)!].backgroundColor = .white
+                //self.userVoteId = self.indexid[sender.tag]
+                //self.optionsStackView.arrangedSubviews[sender.tag].backgroundColor = .orange
+            }
+            task.resume()
+        }
+            
+        
     }
 
     /*
