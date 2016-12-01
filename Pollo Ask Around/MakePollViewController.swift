@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class MakePollViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var pollQuestion: UITextField!
     @IBOutlet weak var pollOption1: UITextField!
     @IBOutlet weak var pollOption2: UITextField!
@@ -44,7 +44,7 @@ class MakePollViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     var latitude: CLLocationDegrees = 0.0
     var longitude: CLLocationDegrees = 0.0
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,15 +77,15 @@ class MakePollViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-     @IBAction func cancel(_ sender: Any) {
+    
+    @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true,completion: nil)
     }
     
@@ -108,60 +108,41 @@ class MakePollViewController: UIViewController, CLLocationManagerDelegate {
             index += 1
         }
         optionsString = optionsString + options[options.count-1]+"']"
-        //print(optionsString)
-        let question = "q="+pollQuestion.text!.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
-        /*
-        let option1: String = pollOption1.text!
-        let option2: String = pollOption2.text!
-        let option3: String = pollOption3.text!
- */
-        //let latitude = 38.648114
-        //let longitude = -90.311554
-        let lat = "&lat="+String(self.latitude)
-        let long = "&lng="+String(self.longitude)
-        //let uuid = "presentation"
-        let uuid = "&uuid="+UIDevice.current.identifierForVendor!.uuidString
-        //let uuid = "hri1o2jd-uto1-74jd-pqjfoe1g0317"
-        //let roption2 = option2.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
-        var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/posts")!)
-        request.httpMethod = "POST"
-        //let postString1 = "q="+question
-        //let postString2 = "&lat="+String(latitude)+"&lng="+String(longitude)
-        //let postString3 = "&uuid="+uuid
-        /*let postString4 = "&options=['"+option1+"','"+option2+"','"+option3+"']"
-        let postString = postString1 + postString2 + postString3 + postString4
- */
-        //let postString = postString1 + postString2 + postString3 + optionsString
-        let postString = question + lat + long + uuid + optionsString
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                // check for fundamental networking error
-                //print("error=\(error)")
-                return
+        if pollQuestion.text! != "" {
+            let question = "q="+pollQuestion.text!.replacingOccurrences(of: "'", with: "\\'", options: .literal, range: nil)
+            let lat = "&lat="+String(self.latitude)
+            let long = "&lng="+String(self.longitude)
+            let uuid = "&uuid="+UIDevice.current.identifierForVendor!.uuidString
+            var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/posts")!)
+            request.httpMethod = "POST"
+            let postString = question + lat + long + uuid + optionsString
+            request.httpBody = postString.data(using: .utf8)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    // check for fundamental networking error
+                    //print("error=\(error)")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(responseString)")
             }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
+            task.resume()
+            dismiss(animated: true, completion: nil)
         }
-        task.resume()
-        dismiss(animated: true, completion: nil)
-        
-        
-    /*
-    q - question
-    lat - latitude
-    lng - longitude
-    uuid -
-    options -
-    */
-    
+        else{
+            let alertController = UIAlertController(title: "Alert", message:
+                "Question field cannot be blank", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     @IBAction func option3Added(_ sender: Any) {
         pollOption3.isHidden = false
@@ -291,14 +272,14 @@ class MakePollViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
-   // MARK: - Navigation
-
+    // MARK: - Navigation
+    
     /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
