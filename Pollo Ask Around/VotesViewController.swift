@@ -271,6 +271,7 @@ class VotesViewController: UIViewController {
         }
         
     }
+    
 //    @IBAction func addToFavoritesButton(_ sender: Any) {
 //        print("testing")
 //        let defaults = UserDefaults.standard
