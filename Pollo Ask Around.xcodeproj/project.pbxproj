@@ -24,6 +24,11 @@
 		CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */; };
 		CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */; };
 		CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */; };
+		CBB7643D1DE9E96400A8A3AF /* PollTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB7643C1DE9E96400A8A3AF /* PollTableCell.swift */; };
+		CBB764431DE9F48100A8A3AF /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB764421DE9F48100A8A3AF /* Checkbox.swift */; };
+		CBB764461DE9F5B700A8A3AF /* outline.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB764441DE9F5B700A8A3AF /* outline.png */; };
+		CBB764471DE9F5B700A8A3AF /* checkedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB764451DE9F5B700A8A3AF /* checkedBox.png */; };
+		CBFE2BA61DF005BB00C5FE6B /* MyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFE2BA51DF005BB00C5FE6B /* MyStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableAndViewController.swift; sourceTree = "<group>"; };
+		CBB7643C1DE9E96400A8A3AF /* PollTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableCell.swift; sourceTree = "<group>"; };
+		CBB764421DE9F48100A8A3AF /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		CBB764441DE9F5B700A8A3AF /* outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outline.png; sourceTree = "<group>"; };
+		CBB764451DE9F5B700A8A3AF /* checkedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedBox.png; sourceTree = "<group>"; };
+		CBFE2BA51DF005BB00C5FE6B /* MyStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,11 +106,16 @@
 		CB51B0B21DDBEB6000A5ACCF /* Polls */ = {
 			isa = PBXGroup;
 			children = (
+				CBB764441DE9F5B700A8A3AF /* outline.png */,
+				CBB764451DE9F5B700A8A3AF /* checkedBox.png */,
 				CB51B0B61DDBEBA800A5ACCF /* PollsViewController.swift */,
 				CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */,
 				CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */,
 				68B640511DE1349500881C34 /* MakePollViewController.swift */,
 				3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */,
+				CBB7643C1DE9E96400A8A3AF /* PollTableCell.swift */,
+				CBB764421DE9F48100A8A3AF /* Checkbox.swift */,
+				CBFE2BA51DF005BB00C5FE6B /* MyStackView.swift */,
 			);
 			name = Polls;
 			sourceTree = "<group>";
@@ -164,6 +179,7 @@
 				TargetAttributes = {
 					CB51B0991DDBEA3E00A5ACCF = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -191,12 +207,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBB764471DE9F5B700A8A3AF /* checkedBox.png in Resources */,
 				CB51B0AB1DDBEA3E00A5ACCF /* LaunchScreen.storyboard in Resources */,
 				CB51B0B91DDBEBED00A5ACCF /* Polls.storyboard in Resources */,
 				CB51B0A81DDBEA3E00A5ACCF /* Assets.xcassets in Resources */,
 				CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */,
 				CB51B0BB1DDBEC1D00A5ACCF /* Favorites.storyboard in Resources */,
 				CB51B0C11DDBEC8800A5ACCF /* Map.storyboard in Resources */,
+				CBB764461DE9F5B700A8A3AF /* outline.png in Resources */,
 				CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,9 +230,12 @@
 				CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */,
 				CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */,
 				68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */,
+				CBB7643D1DE9E96400A8A3AF /* PollTableCell.swift in Sources */,
 				3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */,
 				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
 				CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */,
+				CBB764431DE9F48100A8A3AF /* Checkbox.swift in Sources */,
+				CBFE2BA61DF005BB00C5FE6B /* MyStackView.swift in Sources */,
 				3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */,
 				CB51B0B71DDBEBA800A5ACCF /* PollsViewController.swift in Sources */,
 				CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */,
@@ -338,10 +359,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Pollo Ask Around/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CAKK.Pollo-Ask-Around";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pollo Ask Around/Pollo Ask Around-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -350,10 +374,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Pollo Ask Around/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CAKK.Pollo-Ask-Around";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pollo Ask Around/Pollo Ask Around-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
