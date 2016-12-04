@@ -18,6 +18,7 @@ class VotesViewController: UIViewController {
     var pollId = String()
     var pollQuestion = String()
     var isDone = false
+    var isDone2 = false
     var indexid = [String()]
     var userVoteId: String = ""
     var hasVoted = false
@@ -42,6 +43,7 @@ class VotesViewController: UIViewController {
                 if jsonResult["voted"].stringValue == "true" {
                     self.hasVoted = true
                     self.userVoteId = jsonResult["oid"].stringValue
+                    self.isDone2 = true
                 }
             }
         })
@@ -68,7 +70,7 @@ class VotesViewController: UIViewController {
             }
         })
         task.resume()
-        while !isDone{
+        while !isDone || !isDone2{
             //wait for array to populate
         }
         //optionsStackView.translatesAutoresizingMaskIntoConstraints = false;
