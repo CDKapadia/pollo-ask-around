@@ -155,8 +155,28 @@ class VotesViewController: UIViewController {
             self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
             
             //not voted already
-            
-            
+//            print(votesArray)
+            votesArray[sender.tag - 1]+=1
+            self.sum = votesArray.reduce(0,+)
+            for button in self.optionsStackView.arrangedSubviews as! [UIButton]{
+                button.subviews[button.subviews.count-1].removeFromSuperview() //remove the current green bar.
+                
+                var imageSize = CGSize()
+                if(sum>0){
+                    imageSize = CGSize(width:Double(votesArray[button.tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
+                }else{
+                    imageSize = CGSize(width:1, height: 10)
+                }
+                //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
+                let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
+                imageView.backgroundColor = .green
+                imageView.alpha = 0.25
+                imageView.isUserInteractionEnabled = false;
+                imageView.isExclusiveTouch = false;
+                button.addSubview(imageView)
+                
+                button.reloadInputViews()
+            }
             
             
             var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+indexid[sender.tag])!)
