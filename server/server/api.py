@@ -211,13 +211,13 @@ def change_vote(oid):
         abort(400, 'no operation specified')
 
     if operation == 'add':
-        option.votes += 1
         vote = Vote(uuid, option.pid, oid)
         db.session.add(vote)
+        option.votes += 1
     elif operation == 'remove':
-        option.votes -= 1
         vote = Vote.query.filter_by(uuid=uuid, pid=option.pid).first()
         db.session.delete(vote)
+        option.votes -= 1
     else:
         abort(400, 'not valid operation')
 
