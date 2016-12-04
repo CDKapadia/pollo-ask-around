@@ -88,9 +88,8 @@ class Option(db.Model):
 class Vote(db.Model):
     __tablename__ = 'votes'
 
-    vid = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(db.String(36), nullable=False)
-    pid = db.Column(db.Integer, nullable=False)
+    uuid = db.Column(db.String(36), nullable=False, primary_key=True)
+    pid = db.Column(db.Integer, nullable=False, primary_key=True)
     oid = db.Column(db.Integer, nullable=False)
 
     def __init__(self, uuid, pid, oid):
