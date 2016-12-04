@@ -158,7 +158,6 @@ class VotesViewController: UIViewController {
 //            print(votesArray)
             votesArray[sender.tag - 1]+=1
             self.sum = votesArray.reduce(0,+)
-
             for button in self.optionsStackView.arrangedSubviews as! [UIButton]{
                 button.subviews[button.subviews.count-1].removeFromSuperview() //remove the current green bar.
                 
