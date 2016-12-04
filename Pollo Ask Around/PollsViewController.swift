@@ -20,6 +20,9 @@ class PollsViewController: UIViewController {
         view.addSubview(controller.view)
         controller.didMove(toParentViewController: self)
         
+        //print("Let the magic begin. CK2")
+        
+        
         // Do any additional setup after loading the view.
     }
 
