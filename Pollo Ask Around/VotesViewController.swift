@@ -154,20 +154,22 @@ class VotesViewController: UIViewController {
     }
 
     @IBAction func addToFavoritesButton(_ sender: Any) {
-        print ("oh baby", pollId)
+        
         let defaults = UserDefaults.standard
-        if defaults.array(forKey: "FavoritesArray") != nil {
+        if defaults.dictionary(forKey: "FavoritesArray") != nil {
             //if the user already exists.
-            var faveArray = defaults.array(forKey: "FavoritesArray") as! [String]
-            if(!faveArray.contains(pollTitle)){
-                faveArray.append(pollTitle)
+            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+            if faveArray[pollId] == nil{
+                //if the key is not already in favorites
+                //add it to favorites
+                faveArray[pollId] = pollTitle
                 defaults.set(faveArray, forKey: "FavoritesArray")
                 
             }
         }else{
             //make for the user
-            var faveArray: [String] = []
-            faveArray.append(pollTitle)
+            var faveArray: [String : String] = [:]
+            faveArray[pollId] = pollTitle
             defaults.set(faveArray, forKey: "FavoritesArray")
             
         }

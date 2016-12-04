@@ -24,6 +24,7 @@
 		CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */; };
 		CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */; };
 		CB6A2B231DF3B3F100B77C97 /* FavoritesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6A2B221DF3B3F100B77C97 /* FavoritesTableController.swift */; };
+		CB6A2B251DF3BE5B00B77C97 /* FaveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6A2B241DF3BE5B00B77C97 /* FaveViewCell.swift */; };
 		CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */; };
 		CBB7643D1DE9E96400A8A3AF /* PollTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB7643C1DE9E96400A8A3AF /* PollTableCell.swift */; };
 		CBB764431DE9F48100A8A3AF /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB764421DE9F48100A8A3AF /* Checkbox.swift */; };
@@ -52,6 +53,7 @@
 		CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CB6A2B221DF3B3F100B77C97 /* FavoritesTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableController.swift; sourceTree = "<group>"; };
+		CB6A2B241DF3BE5B00B77C97 /* FaveViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaveViewCell.swift; sourceTree = "<group>"; };
 		CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableAndViewController.swift; sourceTree = "<group>"; };
 		CBB7643C1DE9E96400A8A3AF /* PollTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableCell.swift; sourceTree = "<group>"; };
 		CBB764421DE9F48100A8A3AF /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				CB51B0BA1DDBEC1D00A5ACCF /* Favorites.storyboard */,
 				CB51B0BC1DDBEC6A00A5ACCF /* FavoritesViewController.swift */,
 				CB6A2B221DF3B3F100B77C97 /* FavoritesTableController.swift */,
+				CB6A2B241DF3BE5B00B77C97 /* FaveViewCell.swift */,
 			);
 			name = Favorites;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */,
 				CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */,
 				68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */,
+				CB6A2B251DF3BE5B00B77C97 /* FaveViewCell.swift in Sources */,
 				CBB7643D1DE9E96400A8A3AF /* PollTableCell.swift in Sources */,
 				3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */,
 				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
