@@ -82,10 +82,11 @@ class VotesViewController: UIViewController {
             button.titleLabel!.numberOfLines = 1
 
             var imageSize = CGSize()
-            if(votesArray.count>0){
-                imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
+            
+            if(sum>0){
+                imageSize = CGSize(width:Double(votesArray[tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
             }else{
-                imageSize = CGSize(width:0, height: 0)
+                imageSize = CGSize(width:1, height: 10)
             }
 //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
             let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
@@ -109,16 +110,7 @@ class VotesViewController: UIViewController {
         
             
         }
-//        let sum = votesArray.reduce(0,+)
-//        print (sum)
-//        for madeButton in optionsStackView.arrangedSubviews as! [UIButton]{
-//            
-//            let imageSize = CGSize(width: optionsStackView.frame.size.width, height: 10)
-//            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
-//            imageView.backgroundColor = .green
-//            madeButton.addSubview(imageView)
-//        }
-        
+
         //dummy for selecting voted
     }
     /*
