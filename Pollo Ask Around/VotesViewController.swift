@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import MapKit
 
-class VotesViewController: UIViewController {
+class VotesViewController: UIViewController, MKMapViewDelegate {
     
+    @IBOutlet weak var votesMap: MKMapView!
     @IBOutlet weak var titleOfPoll: UILabel!
     @IBOutlet weak var optionsStackView: UIStackView!
+    
+    var pinAnnotation: MKPointAnnotation!
+    var pinAnnotationView: MKPinAnnotationView!
     
     //fill this with options.
     var myArray = [String]()
@@ -24,10 +29,25 @@ class VotesViewController: UIViewController {
     var hasVoted = false
     var hasBeenDeleted = false
     var votesArray : [Int] = []
-    var pollTitle = String()  
+    var pollTitle = String()
+    var latitude: CLLocationDegrees = 0.0
+    var longitude: CLLocationDegrees = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.votesMap.delegate = self
+        self.votesMap.isZoomEnabled = false
+        self.votesMap.isScrollEnabled = false
+        self.votesMap.isUserInteractionEnabled = false
+        let currentLocation = CLLocation(latitude:self.latitude, longitude: self.longitude)
+        centerMapOnLocation(location: currentLocation)
+        self.pinAnnotation = MKPointAnnotation()
+        let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.latitude, self.longitude)
+        self.pinAnnotation.coordinate = coordinates
+        
+        self.pinAnnotationView = MKPinAnnotationView(annotation: self.pinAnnotation, reuseIdentifier: "pin")
+        self.votesMap.addAnnotation(self.pinAnnotationView.annotation!)
+        
         self.makeView()
     }
     func makeView(){
@@ -43,6 +63,9 @@ class VotesViewController: UIViewController {
                 if jsonResult["voted"].stringValue == "true" {
                     self.hasVoted = true
                     self.userVoteId = jsonResult["oid"].stringValue
+                    self.isDone2 = true
+                }
+                else {
                     self.isDone2 = true
                 }
             }
@@ -138,7 +161,12 @@ class VotesViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         titleOfPoll.text = pollQuestion
-       titleOfPoll.text = pollTitle
+        titleOfPoll.text = pollTitle
+    }
+    func centerMapOnLocation(location: CLLocation) {
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        votesMap.setRegion(coordinateRegion, animated: true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -247,54 +275,84 @@ class VotesViewController: UIViewController {
         
     }
     
-
+    
     @IBAction func addToFave(_ sender: Any) {
         print("testing")
         let defaults = UserDefaults.standard
-        if defaults.dictionary(forKey: "FavoritesArray") != nil {
+        if defaults.dictionary(forKey: "Fave") != nil {
             //if the user already exists.
-            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+            var faveArray = defaults.dictionary(forKey: "Fave") as! [String:String]
+            var faveArrayLat = defaults.dictionary(forKey: "FaveLat") as! [String:String]
+            var faveArrayLong = defaults.dictionary(forKey: "FaveLong") as! [String:String]
+
             if faveArray[pollId] == nil{
                 //if the key is not already in favorites
                 //add it to favorites
                 faveArray[pollId] = pollTitle
-                defaults.set(faveArray, forKey: "FavoritesArray")
+                faveArrayLat[pollId] = String(latitude)
+                faveArrayLong[pollId] = String(longitude)
+                defaults.set(faveArray, forKey: "Fave")
+                defaults.set(faveArrayLat, forKey: "FaveLat")
+                defaults.set(faveArrayLong, forKey: "FaveLong")
                 print("added to favorites")
                 
             }
         }else{
             //make for the user
             var faveArray: [String : String] = [:]
+            var faveArrayLat: [String: String] = [:]
+            var faveArrayLong: [String: String] = [:]
             faveArray[pollId] = pollTitle
-            defaults.set(faveArray, forKey: "FavoritesArray")
+            faveArrayLat[pollId] = String(latitude)
+            faveArrayLong[pollId] = String(longitude)
+            defaults.set(faveArray, forKey: "Fave")
+            defaults.set(faveArrayLat, forKey: "FaveLat")
+            defaults.set(faveArrayLong, forKey: "FaveLong")
+            
             
         }
         
     }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseIdentifier = "pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(named: "pin.png")
+        
+        
+        return annotationView
+    }
     
-//    @IBAction func addToFavoritesButton(_ sender: Any) {
-//        print("testing")
-//        let defaults = UserDefaults.standard
-//        if defaults.dictionary(forKey: "FavoritesArray") != nil {
-//            //if the user already exists.
-//            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
-//            if faveArray[pollId] == nil{
-//                //if the key is not already in favorites
-//                //add it to favorites
-//                faveArray[pollId] = pollTitle
-//                defaults.set(faveArray, forKey: "FavoritesArray")
-//                print("added to favorites")
-//                
-//            }
-//        }else{
-//            //make for the user
-//            var faveArray: [String : String] = [:]
-//            faveArray[pollId] = pollTitle
-//            defaults.set(faveArray, forKey: "FavoritesArray")
-//            
-//        }
-//    
-//    }
+    //    @IBAction func addToFavoritesButton(_ sender: Any) {
+    //        print("testing")
+    //        let defaults = UserDefaults.standard
+    //        if defaults.dictionary(forKey: "FavoritesArray") != nil {
+    //            //if the user already exists.
+    //            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+    //            if faveArray[pollId] == nil{
+    //                //if the key is not already in favorites
+    //                //add it to favorites
+    //                faveArray[pollId] = pollTitle
+    //                defaults.set(faveArray, forKey: "FavoritesArray")
+    //                print("added to favorites")
+    //
+    //            }
+    //        }else{
+    //            //make for the user
+    //            var faveArray: [String : String] = [:]
+    //            faveArray[pollId] = pollTitle
+    //            defaults.set(faveArray, forKey: "FavoritesArray")
+    //
+    //        }
+    //
+    //    }
     /*
      // MARK: - Navigation
      

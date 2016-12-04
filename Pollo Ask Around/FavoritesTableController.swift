@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class FavoritesTableController: UIViewController,UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
@@ -15,15 +16,21 @@ class FavoritesTableController: UIViewController,UITableViewDataSource {
     var myArray : [String] = []
     let defaults = UserDefaults.standard
     var favorites : [String:String] = [:]
+    var favoritesLat : [String:String] = [:]
+    var favoritesLong : [String:String] = [:]
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
 
         // Do any additional setup after loading the view, typically from a nib.
-        if defaults.dictionary(forKey: "FavoritesArray") != nil {
+        if defaults.dictionary(forKey: "Fave") != nil {
             noFaveMessage.isHidden = true
-            favorites = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+            favorites = defaults.dictionary(forKey: "Fave") as! [String:String]
+            favoritesLat = defaults.dictionary(forKey: "FaveLat") as! [String:String]
+            favoritesLong = defaults.dictionary(forKey: "FaveLong") as! [String:String]
             if(favorites.count==0){
                 noFaveMessage.isHidden = false
             }else{
@@ -53,11 +60,14 @@ class FavoritesTableController: UIViewController,UITableViewDataSource {
         
         myCell.textLabel!.numberOfLines = 3
         myCell.textLabel!.lineBreakMode = .byWordWrapping
+
+        
         myCell.textLabel!.text = favorites[thisKey]
-       
         
         myCell.pollName = favorites[thisKey]!
         myCell.pollID = thisKey
+        myCell.lat = CLLocationDegrees(favoritesLat[thisKey]!)!
+        myCell.long = CLLocationDegrees(favoritesLong[thisKey]!)!
         
         return myCell
         
@@ -73,8 +83,13 @@ class FavoritesTableController: UIViewController,UITableViewDataSource {
 
             myArray.remove(at: indexPath.row)
             favorites.removeValue(forKey: cell.pollID)
+            favoritesLat.removeValue(forKey: cell.pollID)
+            favoritesLong.removeValue(forKey: cell.pollID)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            defaults.set(favorites, forKey: "FavoritesArray")
+            defaults.set(favorites, forKey: "Fave")
+            defaults.set(favoritesLat, forKey: "FaveLat")
+            defaults.set(favoritesLong, forKey: "FaveLong")
+
             if(favorites.count==0){
                 
                 
@@ -86,12 +101,12 @@ class FavoritesTableController: UIViewController,UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+/*
         tableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
-        if defaults.dictionary(forKey: "FavoritesArray") != nil {
+        if defaults.dictionary(forKey: "Fave") != nil {
             noFaveMessage.isHidden = true
-            favorites = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+            favorites = defaults.dictionary(forKey: "Fave") as! [String:(String,String,String)]
             if(favorites.count==0){
                 noFaveMessage.isHidden = false
             }else{
@@ -102,6 +117,29 @@ class FavoritesTableController: UIViewController,UITableViewDataSource {
             }
         }else{
             //There are no favorites
+            noFaveMessage.isHidden = false
+        }
+        tableView.reloadData()
+ */
+        tableView.dataSource = self
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        if defaults.dictionary(forKey: "Fave") != nil {
+            noFaveMessage.isHidden = true
+            favorites = defaults.dictionary(forKey: "Fave") as! [String:String]
+            favoritesLat = defaults.dictionary(forKey: "FaveLat") as! [String:String]
+            favoritesLong = defaults.dictionary(forKey: "FaveLong") as! [String:String]
+            if(favorites.count==0){
+                noFaveMessage.isHidden = false
+            }else{
+                myArray = []
+                for key in favorites.keys{
+                    myArray.append(key)
+                }
+            }
+        }else{
+            //There are no favorites
+            
             noFaveMessage.isHidden = false
         }
         tableView.reloadData()
@@ -130,6 +168,8 @@ class FavoritesTableController: UIViewController,UITableViewDataSource {
             let theSender = sender as! FaveViewCell
             nextController.pollId = theSender.pollID
             nextController.pollTitle = theSender.pollName
+            nextController.latitude = theSender.lat
+            nextController.longitude = theSender.long
         }
         else{
             //IF going make a new poll. The plus sign

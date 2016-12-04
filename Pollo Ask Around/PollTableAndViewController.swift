@@ -21,11 +21,15 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     var latitude: String = ""
     var longitude: String = ""
     var ids: [String:String] = [:]
+    var lats: [String:CLLocationDegrees] = [:]
+    var longs: [String:CLLocationDegrees] = [:]
+
     var hasLoaded = false
     var refreshControl = UIRefreshControl()
-    
+    /*
     var pinAnnotation: MKPointAnnotation!
     var pinAnnotationView: MKPinAnnotationView!
+ */
 
     
     override func viewDidLoad() {
@@ -39,9 +43,9 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         pollsTableView.dataSource = self
         
         //disable user interaction with map
-        self.mapOnPollsView.isZoomEnabled = false;
-        self.mapOnPollsView.isScrollEnabled = false;
-        self.mapOnPollsView.isUserInteractionEnabled = false;
+        self.mapOnPollsView.isZoomEnabled = false
+        self.mapOnPollsView.isScrollEnabled = false
+        self.mapOnPollsView.isUserInteractionEnabled = false
         
         //request for authorization
         self.locationManager.requestAlwaysAuthorization()
@@ -98,6 +102,8 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
                     let question = String(dict["q"].stringValue)
                     temp.append(question!) //add question to table
                     self.ids[question!] = id //keeps track of id and question in dictionary
+                    self.lats[question!] = CLLocationDegrees(dict["lat"].doubleValue)
+                    self.longs[question!] = CLLocationDegrees(dict["lng"].doubleValue)
                 }
                 DispatchQueue.main.async {
                     self.myArray = temp
@@ -114,14 +120,14 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         self.longitude = String(locValue.longitude)
         let currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         centerMapOnLocation(location: currentLocation)
-        
+        /*
         self.pinAnnotation = MKPointAnnotation()
         let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude)
         self.pinAnnotation.coordinate = coordinates
         
         self.pinAnnotationView = MKPinAnnotationView(annotation: self.pinAnnotation, reuseIdentifier: "pin")
         self.mapOnPollsView.addAnnotation(self.pinAnnotationView.annotation!)
-        
+        */
         if (self.hasLoaded == false){
         populateTableView()
         self.hasLoaded = true
@@ -197,6 +203,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     }
     
     // MARK: custom annotation
+    /*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseIdentifier = "pin"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
@@ -213,6 +220,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         
         return annotationView
     }
+ */
     
     
     // MARK: - Navigation
@@ -232,6 +240,8 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             nextController.pollQuestion = theSender.pollName
             //nextController.pollTitle = ids[myArray[3]]!
             nextController.pollTitle = theSender.pollName
+            nextController.latitude = lats[theSender.pollName]!
+            nextController.longitude = longs[theSender.pollName]!
         }
         else{
             //IF going make a new poll. The plus sign

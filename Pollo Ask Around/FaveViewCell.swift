@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import MapKit
 
 class FaveViewCell: UITableViewCell {
 
     var pollID = ""
     var pollName = ""
+    var lat = CLLocationDegrees()
+    var long = CLLocationDegrees()
     
     override func awakeFromNib() {
         super.awakeFromNib()

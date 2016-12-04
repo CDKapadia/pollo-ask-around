@@ -46,11 +46,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjQ-ar-cmT" id="cLx-Ik-22Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DAt-px-Iiq" kind="show" id="w1d-aq-h7b"/>
+                                            <segue destination="jgV-iE-zIr" kind="show" id="GjY-1o-o1y"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -85,54 +85,59 @@
             <point key="canvasLocation" x="172" y="-322.48875562218893"/>
         </scene>
         <!--Votes View Controller-->
-        <scene sceneID="XE1-JA-nA4">
+        <scene sceneID="Enb-pn-tdE">
             <objects>
-                <viewController id="DAt-px-Iiq" customClass="VotesViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jgV-iE-zIr" customClass="VotesViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="24a-2x-DGk"/>
-                        <viewControllerLayoutGuide type="bottom" id="nE7-7m-ENo"/>
+                        <viewControllerLayoutGuide type="top" id="6RK-Ac-C2v"/>
+                        <viewControllerLayoutGuide type="bottom" id="U35-bu-wB4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tLm-JN-zXi">
+                    <view key="view" contentMode="scaleToFill" id="SSe-a0-p2F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlP-rN-B4S" userLabel="title">
-                                <rect key="frame" x="16" y="28" width="343" height="114"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jos-gO-tPT">
+                                <rect key="frame" x="16" y="218" width="343" height="441"/>
+                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Eey-Px-ZlP">
+                                <rect key="frame" x="0.0" y="64" width="375" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U33-Az-Fzg" userLabel="title">
+                                <rect key="frame" x="16" y="127" width="343" height="83"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="114" id="DAL-c9-CZy"/>
+                                    <constraint firstAttribute="height" constant="83" id="rpJ-qg-ot2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="F4I-5s-xS9">
-                                <rect key="frame" x="16" y="150" width="343" height="441"/>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KlP-rN-B4S" firstAttribute="trailing" secondItem="F4I-5s-xS9" secondAttribute="trailing" id="7ht-gN-P79"/>
-                            <constraint firstItem="nE7-7m-ENo" firstAttribute="top" secondItem="F4I-5s-xS9" secondAttribute="bottom" constant="76" id="Ahj-tw-0B5"/>
-                            <constraint firstItem="KlP-rN-B4S" firstAttribute="leading" secondItem="tLm-JN-zXi" secondAttribute="leadingMargin" id="B9e-7O-3FE"/>
-                            <constraint firstItem="KlP-rN-B4S" firstAttribute="top" secondItem="24a-2x-DGk" secondAttribute="bottom" constant="8" symbolic="YES" id="DmS-Mf-DvA"/>
-                            <constraint firstItem="KlP-rN-B4S" firstAttribute="trailing" secondItem="tLm-JN-zXi" secondAttribute="trailingMargin" id="oRf-ya-7mj"/>
-                            <constraint firstItem="F4I-5s-xS9" firstAttribute="top" secondItem="KlP-rN-B4S" secondAttribute="bottom" constant="8" symbolic="YES" id="tRJ-R7-3qF"/>
-                            <constraint firstItem="KlP-rN-B4S" firstAttribute="leading" secondItem="F4I-5s-xS9" secondAttribute="leading" id="tXc-5Y-i0B"/>
+                            <constraint firstItem="U33-Az-Fzg" firstAttribute="leading" secondItem="SSe-a0-p2F" secondAttribute="leadingMargin" id="2at-Tg-8qs"/>
+                            <constraint firstItem="jos-gO-tPT" firstAttribute="top" secondItem="U33-Az-Fzg" secondAttribute="bottom" constant="8" symbolic="YES" id="N8F-RP-cJc"/>
+                            <constraint firstItem="U33-Az-Fzg" firstAttribute="trailing" secondItem="SSe-a0-p2F" secondAttribute="trailingMargin" id="XVJ-63-5b4"/>
+                            <constraint firstItem="U33-Az-Fzg" firstAttribute="top" secondItem="6RK-Ac-C2v" secondAttribute="bottom" constant="107" id="c3D-0y-HuZ"/>
+                            <constraint firstItem="U35-bu-wB4" firstAttribute="top" secondItem="jos-gO-tPT" secondAttribute="bottom" constant="8" id="fI8-Ds-gIu"/>
+                            <constraint firstItem="U33-Az-Fzg" firstAttribute="leading" secondItem="jos-gO-tPT" secondAttribute="leading" id="iJw-x0-cB0"/>
+                            <constraint firstItem="U33-Az-Fzg" firstAttribute="trailing" secondItem="jos-gO-tPT" secondAttribute="trailing" id="xzr-n1-TLe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CvD-sR-jXu">
-                        <barButtonItem key="rightBarButtonItem" title="Add to Favorites" id="IfZ-pS-aP6">
+                    <navigationItem key="navigationItem" id="a9d-rS-jXC">
+                        <barButtonItem key="rightBarButtonItem" title="Add to Favorites" id="3Iu-Jg-XDh">
                             <connections>
-                                <action selector="addToFave:" destination="DAt-px-Iiq" id="gyf-xb-91B"/>
+                                <action selector="addToFave:" destination="jgV-iE-zIr" id="Qgg-od-KBr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="optionsStackView" destination="F4I-5s-xS9" id="2V6-Hn-Q9J"/>
-                        <outlet property="titleOfPoll" destination="KlP-rN-B4S" id="sVy-bd-ooe"/>
+                        <outlet property="optionsStackView" destination="jos-gO-tPT" id="3nK-uV-yhX"/>
+                        <outlet property="titleOfPoll" destination="U33-Az-Fzg" id="3Tv-ji-Sax"/>
+                        <outlet property="votesMap" destination="Eey-Px-ZlP" id="sMI-JP-2ow"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8uA-0w-VNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfg-VS-iQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1488.8" y="334.18290854572717"/>
         </scene>
