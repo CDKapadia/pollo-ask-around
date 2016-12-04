@@ -1,11 +1,12 @@
 '''
-    views file that defines behavior for each webppage
+    defines behavior for each api address
 '''
 import ast
 from flask import request, make_response, jsonify, abort
 from server import app
-from server.models import db, User, Post, Option
+from server.models import db, User, Post, Option, Vote
 import sqlalchemy.exc
+import json
 
 db.create_all()
 
@@ -58,7 +59,7 @@ def create_user():
             abort(409, 'uuid already exists')
         except:
             abort(500, 'Internal server error')
-    return jsonify(response), 201
+    return jsonify(response)
 
 
 @app.route('/users/<uuid>/posts', methods=['GET'])
@@ -77,14 +78,14 @@ def get_posts_by_user(uuid):
 
     posts = user.posts[page * results_per_page: (page + 1) * results_per_page]
     response = {}
-    for i, post in enumerate(posts):
-        options = Option.query.filter_by(pid=post.pid).all()
-        response[i] = {
+    for post in posts:
+        # options = Option.query.filter_by(pid=post.pid).all()
+        response[post.pid] = {
                 'q': post.question,
                 'lat': float(post.lat),
                 'lng': float(post.lng),
-                'author': uuid,
-                'options': {option.oid: {'votes': option.votes, 'text': option.text} for option in options}
+                'author': uuid
+                #'options': {option.oid: {'votes': option.votes, 'text': option.text} for option in options}
         }
     return jsonify(response)
 
@@ -107,15 +108,15 @@ def get_posts_by_location(lat, lng):
 
     posts = Post.query.filter(Post.distance(curr) < 5)[page * results_per_page: (page + 1) * results_per_page]
     response = {}
-    for i, post in enumerate(posts):
-        options = Option.query.filter_by(pid=post.pid).all()
+    for post in posts:
+        # options = Option.query.filter_by(pid=post.pid).all()
         author = User.query.filter_by(uid=post.uid).first()
-        response[i] = {
+        response[post.pid] = {
                 'q': post.question,
                 'lat': float(post.lat),
                 'lng': float(post.lng),
-                'author': author.uuid,
-                'options': {option.oid: {'votes': option.votes, 'text': option.text} for option in options}
+                'author': author.uuid
+                #'options': {option.oid: {'votes': option.votes, 'text': option.text} for option in options}
         }
     return jsonify(response)
 
@@ -136,51 +137,93 @@ def create_post():
 
     try:
         options = ast.literal_eval(passed_params['options'])
-        user = User.query.filter_by(uuid=passed_params['uuid']).first()
-        post = Post(passed_params['q'], passed_params['lat'], passed_params['lng'], user)
-
-        db.session.add(post)
-        db.session.flush()
-
-        for option in options:
-            db.session.add(Option(option, post.pid))
-
-        db.session.commit()
-        response['message'] = 'post created'
     except SyntaxError:
         abort(400, 'error parsing options')
-    except AttributeError:
+
+    user = User.query.filter_by(uuid=passed_params['uuid']).first()
+
+    if user is None:
         abort(404, 'could not find user with uuid %s' % uuid)
-    return jsonify(response), 201
+
+    post = Post(passed_params['q'], passed_params['lat'], passed_params['lng'], user)
+
+    db.session.add(post)
+    db.session.flush()
+
+    for option in options:
+        db.session.add(Option(option, post.pid))
+
+    db.session.commit()
+    response['message'] = 'post created'
+    return jsonify(response)
 
 
 @app.route('/posts', methods=['DELETE'])
 def delete_post():
     # TODO: implementation
-    pass
+    pid = request.form.get('pid')
+    post = Post.query.filter_by(pid=pid).first()
+    if post is None:
+        abort(404, 'post with pid %s not found' % pid)
 
-@app.route('/votes/<int:oid>', methods=['PATCH'])
-def vote(oid):
-    # TODO: validate that user has not voted already
-    try:
-        op = request.form['op']
-        uuid = request.form['uuid']
-        pid = request.form['pid']
-        user = User.query.filter_by(uuid=uuid).first()
-        option = Option.query.filter_by(oid=oid).first()
-        if op == 'add':
-            option.votes += 1
-        elif op == 'remove':
-            option.votes -= 1
-        else:
-            raise ValueError()
-        db.commit()
-    except KeyError:
+    db.session.delete(post)
+    db.session.commit()
+    return jsonify({'message': 'post deleted'})
+
+
+@app.route('/posts/<int:pid>/options', methods=['GET'])
+def get_votes(pid):
+    post = Post.query.filter_by(pid=pid).first()
+    if post is None:
+        abort(404, 'post with pid %s not found' % pid)
+    response = {option.oid: {'text': option.text, 'votes': option.votes} for option in post.options}
+    return jsonify(response)
+
+
+@app.route('/posts/<int:pid>/votes/users/<uuid>', methods=['GET'])
+def get_votes_from_user(pid, uuid):
+    vote = Vote.query.filter_by(pid=pid, uuid=uuid).first()
+    response = {}
+    if vote is None:
+        response['voted'] = False
+    else:
+        response['voted'] = True
+        response['oid'] = vote.oid
+    return jsonify(response)
+
+
+@app.route('/options/<int:oid>', methods=['PATCH'])
+def change_vote(oid):
+    data = json.loads(request.data.decode('utf-8'))
+    uuid = data.get('uuid')
+
+    user = User.query.filter_by(uuid=uuid).first()
+    if user is None:
+        print(uuid)
+        abort(404, 'user with uuid %s not found' % uuid)
+
+    option = Option.query.filter_by(oid=oid).first()
+    if option is None:
+        abort(404, 'option with oid %s not found' % oid)
+
+    operation = data.get('op')
+    if operation is None:
         abort(400, 'no operation specified')
-    except ValueError:
+
+    if operation == 'add':
+        option.votes += 1
+        vote = Vote(uuid, option.pid, oid)
+        db.session.add(vote)
+    elif operation == 'remove':
+        option.votes -= 1
+        vote = Vote.query.filter_by(uuid=uuid, pid=option.pid).first()
+        db.session.delete(vote)
+    else:
         abort(400, 'not valid operation')
-    except AttributeError:
-        abort(404, 'option with id %i not found' % oid)
+
+    db.session.commit()
+    response = {'message': 'voted'}
+    return jsonify(response)
 
 
 @app.route('/test/')

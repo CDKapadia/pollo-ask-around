@@ -23,6 +23,7 @@ class VotesViewController: UIViewController {
     var hasVoted = false
     var hasBeenDeleted = false
     var votesArray : [Int] = []
+    var pollTitle = String()  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +136,7 @@ class VotesViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         titleOfPoll.text = pollQuestion
+       titleOfPoll.text = pollTitle
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -243,6 +245,29 @@ class VotesViewController: UIViewController {
         
     }
     
+
+    @IBAction func addToFavoritesButton(_ sender: Any) {
+        
+        let defaults = UserDefaults.standard
+        if defaults.dictionary(forKey: "FavoritesArray") != nil {
+            //if the user already exists.
+            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+            if faveArray[pollId] == nil{
+                //if the key is not already in favorites
+                //add it to favorites
+                faveArray[pollId] = pollTitle
+                defaults.set(faveArray, forKey: "FavoritesArray")
+                
+            }
+        }else{
+            //make for the user
+            var faveArray: [String : String] = [:]
+            faveArray[pollId] = pollTitle
+            defaults.set(faveArray, forKey: "FavoritesArray")
+            
+        }
+    
+    }
     /*
      // MARK: - Navigation
      

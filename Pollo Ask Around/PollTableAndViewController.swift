@@ -206,6 +206,7 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
             nextController.pollId = ids[theSender.pollName]!
             nextController.pollQuestion = theSender.pollName
             //nextController.pollTitle = ids[myArray[3]]!
+            nextController.pollTitle = theSender.pollName
         }
         else{
             //IF going make a new poll. The plus sign

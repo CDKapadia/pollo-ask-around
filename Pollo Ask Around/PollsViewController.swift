@@ -23,8 +23,6 @@ class PollsViewController: UIViewController {
         //print("Let the magic begin. CK2")
         
         
-        
-        
         // Do any additional setup after loading the view.
     }
 

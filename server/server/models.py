@@ -85,17 +85,17 @@ class Option(db.Model):
     def __repr__(self):
         return '<Post Option: %i, %s, votes: %i>' % self.pid, self.text, self.votes
 
-class Voted(db.Model):
-    __tablename__ = 'voted'
+class Vote(db.Model):
+    __tablename__ = 'votes'
 
-    # tracks which users have voted on which questions
-    vid = db.Column(db.Integer, primary_key=True)
-    uid = db.Column(db.Integer, nullable=False)
-    pid = db.Column(db.Integer, nullable=False)
+    uuid = db.Column(db.String(36), nullable=False, primary_key=True)
+    pid = db.Column(db.Integer, nullable=False, primary_key=True)
+    oid = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, uid, pid):
-        self.uid = uid
+    def __init__(self, uuid, pid, oid):
+        self.uuid = uuid
         self.pid = pid
+        self.oid = oid
 
     def __repr__(self):
-        return '<Vote uid: %i, pid: %i>' % self.uid, self.pid
+        return '<Vote uuid: %i, pid: %i>' % self.uuid, self.pid
