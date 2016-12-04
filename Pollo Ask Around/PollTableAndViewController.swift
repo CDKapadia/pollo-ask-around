@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate, UITableViewDelegate {
+class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate, UITableViewDelegate, MKMapViewDelegate {
     @IBOutlet weak var pollsTableView: UITableView!
     
     @IBOutlet weak var mapOnPollsView: MKMapView!
@@ -23,11 +23,14 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
     var ids: [String:String] = [:]
     var hasLoaded = false
     var refreshControl = UIRefreshControl()
+    
+    var pinAnnotation: MKPointAnnotation!
+    var pinAnnotationView: MKPinAnnotationView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.mapOnPollsView.delegate = self
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         self.pollsTableView.addSubview(refreshControl)
@@ -111,12 +114,14 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         self.longitude = String(locValue.longitude)
         let currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         centerMapOnLocation(location: currentLocation)
-        /* do we want a pin???
-        let pin = MKPointAnnotation()
+        
+        self.pinAnnotation = MKPointAnnotation()
         let coordinates: CLLocationCoordinate2D = CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude)
-        pin.coordinate = coordinates
-        self.mapOnPollsView.addAnnotation(pin)
-        */
+        self.pinAnnotation.coordinate = coordinates
+        
+        self.pinAnnotationView = MKPinAnnotationView(annotation: self.pinAnnotation, reuseIdentifier: "pin")
+        self.mapOnPollsView.addAnnotation(self.pinAnnotationView.annotation!)
+        
         if (self.hasLoaded == false){
         populateTableView()
         self.hasLoaded = true
@@ -184,11 +189,31 @@ class PollTableAndViewController: UIViewController, UITableViewDataSource, CLLoc
         return myCell
         
     }
+    
     var currentIndexPath: IndexPath?
        override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: custom annotation
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseIdentifier = "pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(named: "pin.png")
+        
+        
+        return annotationView
+    }
+    
     
     // MARK: - Navigation
 

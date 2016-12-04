@@ -31,6 +31,8 @@
 		CBB764461DE9F5B700A8A3AF /* outline.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB764441DE9F5B700A8A3AF /* outline.png */; };
 		CBB764471DE9F5B700A8A3AF /* checkedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB764451DE9F5B700A8A3AF /* checkedBox.png */; };
 		CBFE2BA61DF005BB00C5FE6B /* MyStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFE2BA51DF005BB00C5FE6B /* MyStackView.swift */; };
+		D388F9A11DF3D562001C1464 /* pin.svg in Resources */ = {isa = PBXBuildFile; fileRef = D388F9A01DF3D562001C1464 /* pin.svg */; };
+		D388F9A91DF3D792001C1464 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = D388F9A81DF3D792001C1464 /* pin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		CBB764441DE9F5B700A8A3AF /* outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outline.png; sourceTree = "<group>"; };
 		CBB764451DE9F5B700A8A3AF /* checkedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedBox.png; sourceTree = "<group>"; };
 		CBFE2BA51DF005BB00C5FE6B /* MyStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStackView.swift; sourceTree = "<group>"; };
+		D388F9A01DF3D562001C1464 /* pin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pin.svg; sourceTree = "<group>"; };
+		D388F9A81DF3D792001C1464 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 		CB51B0B21DDBEB6000A5ACCF /* Polls */ = {
 			isa = PBXGroup;
 			children = (
+				D388F9A81DF3D792001C1464 /* pin.png */,
+				D388F9A01DF3D562001C1464 /* pin.svg */,
 				CBB764441DE9F5B700A8A3AF /* outline.png */,
 				CBB764451DE9F5B700A8A3AF /* checkedBox.png */,
 				CB51B0B61DDBEBA800A5ACCF /* PollsViewController.swift */,
@@ -213,7 +219,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D388F9A11DF3D562001C1464 /* pin.svg in Resources */,
 				CBB764471DE9F5B700A8A3AF /* checkedBox.png in Resources */,
+				D388F9A91DF3D792001C1464 /* pin.png in Resources */,
 				CB51B0AB1DDBEA3E00A5ACCF /* LaunchScreen.storyboard in Resources */,
 				CB51B0B91DDBEBED00A5ACCF /* Polls.storyboard in Resources */,
 				CB51B0A81DDBEA3E00A5ACCF /* Assets.xcassets in Resources */,
