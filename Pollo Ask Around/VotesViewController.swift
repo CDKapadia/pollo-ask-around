@@ -16,13 +16,14 @@ class VotesViewController: UIViewController {
     //fill this with options.
     var myArray = [String]()
     var pollId = String()
+    var pollQuestion = String()
     var isDone = false
     var indexid = [String()]
     var userVoteId: String = ""
     var hasVoted = false
     var hasBeenDeleted = false
     var votesArray : [Int] = []
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.makeView()
@@ -80,7 +81,7 @@ class VotesViewController: UIViewController {
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.adjustsFontSizeToFitWidth = true
             button.titleLabel!.numberOfLines = 1
-
+            
             var imageSize = CGSize()
             
             if(sum>0){
@@ -88,14 +89,14 @@ class VotesViewController: UIViewController {
             }else{
                 imageSize = CGSize(width:1, height: 10)
             }
-//            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
+            //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
             let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
             imageView.backgroundColor = .green
             imageView.alpha = 0.25
             imageView.isUserInteractionEnabled = false;
             imageView.isExclusiveTouch = false;
             button.addSubview(imageView)
-//            button.sendSubview(toBack: imageView) // goes behind the collection
+            //            button.sendSubview(toBack: imageView) // goes behind the collection
             
             if indexid[tag] == userVoteId{
                 button.backgroundColor = .orange
@@ -107,33 +108,33 @@ class VotesViewController: UIViewController {
             tag+=1
             button.addTarget(self, action: #selector(optionChosen), for: .touchUpInside)
             optionsStackView.addArrangedSubview(button)
-        
+            
             
         }
-
+        
         //dummy for selecting voted
     }
     /*
-    func makeButtons(){
-        var tag = 1
-        for name in myArray{
-            let button = UIButton()
-            //button.backgroundColor = .orange
-            button.setTitle(name, for: .normal)
-            button.setTitleColor(.black, for: .normal)
-            button.titleLabel?.adjustsFontSizeToFitWidth = true
-            button.titleLabel!.numberOfLines = 1
-            
-            //maybe make a custon button
-            button.tag = tag
-            tag+=1
-            button.addTarget(self, action: #selector(optionChosen), for: .touchUpInside)
-            optionsStackView.addArrangedSubview(button)
-        }
-    }
- */
+     func makeButtons(){
+     var tag = 1
+     for name in myArray{
+     let button = UIButton()
+     //button.backgroundColor = .orange
+     button.setTitle(name, for: .normal)
+     button.setTitleColor(.black, for: .normal)
+     button.titleLabel?.adjustsFontSizeToFitWidth = true
+     button.titleLabel!.numberOfLines = 1
+     
+     //maybe make a custon button
+     button.tag = tag
+     tag+=1
+     button.addTarget(self, action: #selector(optionChosen), for: .touchUpInside)
+     optionsStackView.addArrangedSubview(button)
+     }
+     }
+     */
     override func viewWillAppear(_ animated: Bool) {
-       titleOfPoll.text = pollId
+        titleOfPoll.text = pollQuestion
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -142,35 +143,47 @@ class VotesViewController: UIViewController {
     
     func optionChosen(sender: UIButton!) {
         if !hasVoted{
-        var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+indexid[sender.tag])!)
-        request.httpMethod = "PATCH"
-        let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
-        let op = "\"op\":\"add\""
-        let postString = "{"+uuid+"\"," + op + "}"
-        print(postString)
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                // check for fundamental networking error
-                //print("error=\(error)")
-                return
+            self.optionsStackView.arrangedSubviews[sender.tag - 1].backgroundColor = .orange
+            self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
+            var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+indexid[sender.tag])!)
+            request.httpMethod = "PATCH"
+            let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
+            let op = "\"op\":\"add\""
+            let postString = "{"+uuid+"\"," + op + "}"
+            print(postString)
+            request.httpBody = postString.data(using: .utf8)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    // check for fundamental networking error
+                    //print("error=\(error)")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(responseString!)")
+                self.userVoteId = self.indexid[sender.tag]
+                self.hasVoted = true
             }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString!)")
-        }
-        task.resume()
+            task.resume()
         }
         else if hasVoted && userVoteId == indexid[sender.tag]{
             //do nothing
         }
         else {
+            self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)! - 1].backgroundColor = .white
+            //print(self.indexid.index(of:self.userVoteId)!)
+            //self.userVoteId = self.indexid[sender.tag]
+            //print(sender.tag)
+            //print(self.indexid[sender.tag])
+            self.optionsStackView.arrangedSubviews[sender.tag - 1].backgroundColor = .orange
+            self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)! - 1].reloadInputViews()
+            self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
             let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
             var request2 = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+self.userVoteId)!)
             request2.httpMethod = "PATCH"
@@ -220,26 +233,24 @@ class VotesViewController: UIViewController {
                 }
                 
                 let responseString = String(data: data, encoding: .utf8)
+                self.userVoteId = self.indexid[sender.tag]
                 print("responseString = \(responseString!)")
-                //self.hasBeenDeleted = false
-                //self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)!].backgroundColor = .white
-                //self.userVoteId = self.indexid[sender.tag]
-                //self.optionsStackView.arrangedSubviews[sender.tag].backgroundColor = .orange
+                self.hasBeenDeleted = false
             }
             task.resume()
         }
-            
+        
         
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -20,7 +20,7 @@ class PollsViewController: UIViewController {
         view.addSubview(controller.view)
         controller.didMove(toParentViewController: self)
         
-        print("Let the magic begin. CK2")
+        //print("Let the magic begin. CK2")
         
         
         

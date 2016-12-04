@@ -160,6 +160,7 @@ class MakePollViewController: UIViewController, CLLocationManagerDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
     @IBAction func option3Added(_ sender: Any) {
         pollOption3.isHidden = false
         addOption4.isHidden = false
