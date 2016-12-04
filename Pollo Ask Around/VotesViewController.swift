@@ -175,6 +175,8 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
     
     func optionChosen(sender: UIButton!) {
         if !hasVoted{
+            self.userVoteId = self.indexid[sender.tag]
+            self.hasVoted = true
             self.optionsStackView.arrangedSubviews[sender.tag - 1].backgroundColor = .orange
             self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
             
@@ -225,8 +227,6 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
                 
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(responseString!)")
-                self.userVoteId = self.indexid[sender.tag]
-                self.hasVoted = true
             }
             task.resume()
         }
@@ -236,19 +236,21 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
         else {
             
             // orange
-            self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)! - 1].backgroundColor = .white
+            let previousVoteId = self.userVoteId
+            self.userVoteId = self.indexid[sender.tag]
+            self.optionsStackView.arrangedSubviews[self.indexid.index(of: previousVoteId)! - 1].backgroundColor = .white
             //print(self.indexid.index(of:self.userVoteId)!)
             //self.userVoteId = self.indexid[sender.tag]
             //print(sender.tag)
             //print(self.indexid[sender.tag])
             self.optionsStackView.arrangedSubviews[sender.tag - 1].backgroundColor = .orange
-            self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)! - 1].reloadInputViews()
+            self.optionsStackView.arrangedSubviews[self.indexid.index(of: previousVoteId)! - 1].reloadInputViews()
             self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
             
             print(votesArray)
-            print("what was changed",self.indexid.index(of: self.userVoteId)! - 1)
+            print("what was changed",self.indexid.index(of: previousVoteId)! - 1)
             print("new",sender.tag - 1)
-            votesArray[self.indexid.index(of: self.userVoteId)! - 1]-=1
+            votesArray[self.indexid.index(of: previousVoteId)! - 1]-=1
             votesArray[sender.tag - 1]+=1
             for button in self.optionsStackView.arrangedSubviews as! [UIButton]{
                 button.subviews[button.subviews.count-1].removeFromSuperview() //remove the current green bar.
@@ -272,7 +274,7 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
             
             //request
             let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
-            var request2 = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+self.userVoteId)!)
+            var request2 = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+previousVoteId)!)
             request2.httpMethod = "PATCH"
             let op2 = "\"op\":\"remove\""
             let postString2 = "{"+uuid+"\"," + op2 + "}"
@@ -320,7 +322,6 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
                 }
                 
                 let responseString = String(data: data, encoding: .utf8)
-                self.userVoteId = self.indexid[sender.tag]
                 print("responseString = \(responseString!)")
                 self.hasBeenDeleted = false
             }
