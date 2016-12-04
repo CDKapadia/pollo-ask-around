@@ -248,8 +248,8 @@ class VotesViewController: UIViewController {
     }
     
 
-    @IBAction func addToFavoritesButton(_ sender: Any) {
-        
+    @IBAction func addToFave(_ sender: Any) {
+        print("testing")
         let defaults = UserDefaults.standard
         if defaults.dictionary(forKey: "FavoritesArray") != nil {
             //if the user already exists.
@@ -259,6 +259,7 @@ class VotesViewController: UIViewController {
                 //add it to favorites
                 faveArray[pollId] = pollTitle
                 defaults.set(faveArray, forKey: "FavoritesArray")
+                print("added to favorites")
                 
             }
         }else{
@@ -268,8 +269,31 @@ class VotesViewController: UIViewController {
             defaults.set(faveArray, forKey: "FavoritesArray")
             
         }
-    
+        
     }
+//    @IBAction func addToFavoritesButton(_ sender: Any) {
+//        print("testing")
+//        let defaults = UserDefaults.standard
+//        if defaults.dictionary(forKey: "FavoritesArray") != nil {
+//            //if the user already exists.
+//            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
+//            if faveArray[pollId] == nil{
+//                //if the key is not already in favorites
+//                //add it to favorites
+//                faveArray[pollId] = pollTitle
+//                defaults.set(faveArray, forKey: "FavoritesArray")
+//                print("added to favorites")
+//                
+//            }
+//        }else{
+//            //make for the user
+//            var faveArray: [String : String] = [:]
+//            faveArray[pollId] = pollTitle
+//            defaults.set(faveArray, forKey: "FavoritesArray")
+//            
+//        }
+//    
+//    }
     /*
      // MARK: - Navigation
      

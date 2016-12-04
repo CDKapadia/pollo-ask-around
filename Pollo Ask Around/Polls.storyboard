@@ -63,7 +63,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dKc-Os-QQX">
-                        <barButtonItem key="rightBarButtonItem" title="Add to Favorites❣" id="489-BI-YwP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add to Favorites" id="489-BI-YwP">
+                            <connections>
+                                <action selector="addToFave:" destination="3UA-uj-R4Q" id="uIO-nl-ZUc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="optionsStackView" destination="5Yq-CA-kXI" id="Cqh-yg-v8i"/>

@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-623" y="-321"/>
         </scene>
-        <!--Favorites Table Controller-->
+        <!--Favorites!-->
         <scene sceneID="6SZ-rt-edI">
             <objects>
                 <viewController id="Age-KD-ULh" customClass="FavoritesTableController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjQ-ar-cmT" id="cLx-Ik-22Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -74,7 +74,7 @@
                             <constraint firstItem="sEu-NC-4lk" firstAttribute="trailing" secondItem="N5W-kp-HJ9" secondAttribute="trailing" id="tDx-97-rfN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2hf-WQ-TOf"/>
+                    <navigationItem key="navigationItem" title="Favorites!" id="2hf-WQ-TOf"/>
                     <connections>
                         <outlet property="noFaveMessage" destination="N5W-kp-HJ9" id="yRN-8M-iDG"/>
                         <outlet property="tableView" destination="sEu-NC-4lk" id="iba-eh-niw"/>
@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-Mm-0tf" userLabel="title">
-                                <rect key="frame" x="16" y="28" width="343" height="114"/>
+                                <rect key="frame" x="16" y="72" width="343" height="114"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="114" id="De8-j2-tfo"/>
                                 </constraints>
@@ -106,7 +106,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DxW-X8-juf">
-                                <rect key="frame" x="16" y="150" width="343" height="441"/>
+                                <rect key="frame" x="16" y="194" width="343" height="397"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
