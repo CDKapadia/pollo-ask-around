@@ -1,31 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Y1x-a3-mr2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xth-KA-zZO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ar2-OE-jTM">
+        <!--Navigation Controller-->
+        <scene sceneID="b2p-Y8-2xD">
             <objects>
-                <viewController id="Y1x-a3-mr2" sceneMemberID="viewController">
+                <navigationController id="xth-KA-zZO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eRQ-bV-gzM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Age-KD-ULh" kind="relationship" relationship="rootViewController" id="cmd-wY-r3E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nUP-z6-qwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-623" y="-321"/>
+        </scene>
+        <!--Favorites Table Controller-->
+        <scene sceneID="6SZ-rt-edI">
+            <objects>
+                <viewController id="Age-KD-ULh" customClass="FavoritesTableController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AFL-ax-xnh"/>
-                        <viewControllerLayoutGuide type="bottom" id="awl-2K-8hV"/>
+                        <viewControllerLayoutGuide type="top" id="Onv-yL-YQT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZpH-kI-tPV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m8M-ne-ka0">
+                    <view key="view" contentMode="scaleToFill" id="rNB-VT-Fs3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.99953407049179077" green="0.9354749270988747" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sEu-NC-4lk">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="theCell" id="sjQ-ar-cmT" customClass="FaveViewCell" customModule="Pollo_Ask_Around" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjQ-ar-cmT" id="cLx-Ik-22Z">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Rbm-g7-HQk" kind="show" id="bx9-0l-bqm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorites! 😢" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5W-kp-HJ9">
+                                <rect key="frame" x="0.0" y="276" width="375" height="114"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sEu-NC-4lk" firstAttribute="leading" secondItem="N5W-kp-HJ9" secondAttribute="leading" id="1dy-WN-SNb"/>
+                            <constraint firstAttribute="trailing" secondItem="sEu-NC-4lk" secondAttribute="trailing" id="40g-sz-XS2"/>
+                            <constraint firstItem="N5W-kp-HJ9" firstAttribute="centerY" secondItem="rNB-VT-Fs3" secondAttribute="centerY" id="EnM-Gr-cqU"/>
+                            <constraint firstItem="sEu-NC-4lk" firstAttribute="bottom" secondItem="ZpH-kI-tPV" secondAttribute="top" id="LK7-yB-Ptv"/>
+                            <constraint firstItem="N5W-kp-HJ9" firstAttribute="top" secondItem="Onv-yL-YQT" secondAttribute="bottom" constant="212" id="Ywy-CE-Gv0"/>
+                            <constraint firstItem="sEu-NC-4lk" firstAttribute="leading" secondItem="rNB-VT-Fs3" secondAttribute="leading" id="ieg-J7-rbv"/>
+                            <constraint firstItem="sEu-NC-4lk" firstAttribute="top" secondItem="Onv-yL-YQT" secondAttribute="bottom" id="nPW-9A-qCC"/>
+                            <constraint firstItem="sEu-NC-4lk" firstAttribute="trailing" secondItem="N5W-kp-HJ9" secondAttribute="trailing" id="tDx-97-rfN"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2hf-WQ-TOf"/>
+                    <connections>
+                        <outlet property="noFaveMessage" destination="N5W-kp-HJ9" id="yRN-8M-iDG"/>
+                        <outlet property="tableView" destination="sEu-NC-4lk" id="iba-eh-niw"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ULq-AA-ny9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DxW-6r-TQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="-213"/>
+            <point key="canvasLocation" x="172" y="-322.48875562218893"/>
+        </scene>
+        <!--Votes View Controller-->
+        <scene sceneID="LBI-HD-JTd">
+            <objects>
+                <viewController id="Rbm-g7-HQk" customClass="VotesViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yC0-nQ-1Tz"/>
+                        <viewControllerLayoutGuide type="bottom" id="GlP-DH-Q6J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AfY-m5-7ra">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-Mm-0tf" userLabel="title">
+                                <rect key="frame" x="16" y="28" width="343" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="114" id="De8-j2-tfo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DxW-X8-juf">
+                                <rect key="frame" x="16" y="150" width="343" height="441"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="trailing" secondItem="DxW-X8-juf" secondAttribute="trailing" id="2be-hu-eb4"/>
+                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="trailing" secondItem="AfY-m5-7ra" secondAttribute="trailingMargin" id="EH3-Ve-cjY"/>
+                            <constraint firstItem="DxW-X8-juf" firstAttribute="top" secondItem="qlp-Mm-0tf" secondAttribute="bottom" constant="8" symbolic="YES" id="HEM-Ed-GqX"/>
+                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="leading" secondItem="AfY-m5-7ra" secondAttribute="leadingMargin" id="Lhg-zy-OG1"/>
+                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="top" secondItem="yC0-nQ-1Tz" secondAttribute="bottom" constant="8" symbolic="YES" id="kX2-pc-nzX"/>
+                            <constraint firstItem="GlP-DH-Q6J" firstAttribute="top" secondItem="DxW-X8-juf" secondAttribute="bottom" constant="76" id="ugL-ka-ldo"/>
+                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="leading" secondItem="DxW-X8-juf" secondAttribute="leading" id="vTE-jg-aMi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RNb-p3-Tdo">
+                        <barButtonItem key="rightBarButtonItem" title="✊🏼✊🏼✊🏼💦" id="J9l-My-Wmf">
+                            <connections>
+                                <action selector="addToFavoritesButton:" destination="Rbm-g7-HQk" id="Xc9-p4-b0f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="optionsStackView" destination="DxW-X8-juf" id="vhg-tK-1jw"/>
+                        <outlet property="titleOfPoll" destination="qlp-Mm-0tf" id="5Bi-Ws-7A3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YmH-6C-l5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1150" y="-322"/>
         </scene>
     </scenes>
 </document>

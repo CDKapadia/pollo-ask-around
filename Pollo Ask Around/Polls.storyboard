@@ -62,6 +62,9 @@
                             <constraint firstItem="avu-XP-l2Z" firstAttribute="top" secondItem="5Yq-CA-kXI" secondAttribute="bottom" constant="76" id="xMU-oT-d9X"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="dKc-Os-QQX">
+                        <barButtonItem key="rightBarButtonItem" title="Add to Favorites❣" id="489-BI-YwP"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="optionsStackView" destination="5Yq-CA-kXI" id="Cqh-yg-v8i"/>
                         <outlet property="titleOfPoll" destination="U9S-Yn-kWG" id="VrL-bC-t06"/>
@@ -91,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6H-jl-dPs" id="2WN-fb-nkZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" label="theCell"/>
