@@ -50,7 +50,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Rbm-g7-HQk" kind="show" id="bx9-0l-bqm"/>
+                                            <segue destination="DAt-px-Iiq" kind="show" id="w1d-aq-h7b"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -85,56 +85,56 @@
             <point key="canvasLocation" x="172" y="-322.48875562218893"/>
         </scene>
         <!--Votes View Controller-->
-        <scene sceneID="LBI-HD-JTd">
+        <scene sceneID="XE1-JA-nA4">
             <objects>
-                <viewController id="Rbm-g7-HQk" customClass="VotesViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DAt-px-Iiq" customClass="VotesViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yC0-nQ-1Tz"/>
-                        <viewControllerLayoutGuide type="bottom" id="GlP-DH-Q6J"/>
+                        <viewControllerLayoutGuide type="top" id="24a-2x-DGk"/>
+                        <viewControllerLayoutGuide type="bottom" id="nE7-7m-ENo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AfY-m5-7ra">
+                    <view key="view" contentMode="scaleToFill" id="tLm-JN-zXi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-Mm-0tf" userLabel="title">
-                                <rect key="frame" x="16" y="72" width="343" height="114"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlP-rN-B4S" userLabel="title">
+                                <rect key="frame" x="16" y="28" width="343" height="114"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="114" id="De8-j2-tfo"/>
+                                    <constraint firstAttribute="height" constant="114" id="DAL-c9-CZy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DxW-X8-juf">
-                                <rect key="frame" x="16" y="194" width="343" height="397"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="F4I-5s-xS9">
+                                <rect key="frame" x="16" y="150" width="343" height="441"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="trailing" secondItem="DxW-X8-juf" secondAttribute="trailing" id="2be-hu-eb4"/>
-                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="trailing" secondItem="AfY-m5-7ra" secondAttribute="trailingMargin" id="EH3-Ve-cjY"/>
-                            <constraint firstItem="DxW-X8-juf" firstAttribute="top" secondItem="qlp-Mm-0tf" secondAttribute="bottom" constant="8" symbolic="YES" id="HEM-Ed-GqX"/>
-                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="leading" secondItem="AfY-m5-7ra" secondAttribute="leadingMargin" id="Lhg-zy-OG1"/>
-                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="top" secondItem="yC0-nQ-1Tz" secondAttribute="bottom" constant="8" symbolic="YES" id="kX2-pc-nzX"/>
-                            <constraint firstItem="GlP-DH-Q6J" firstAttribute="top" secondItem="DxW-X8-juf" secondAttribute="bottom" constant="76" id="ugL-ka-ldo"/>
-                            <constraint firstItem="qlp-Mm-0tf" firstAttribute="leading" secondItem="DxW-X8-juf" secondAttribute="leading" id="vTE-jg-aMi"/>
+                            <constraint firstItem="KlP-rN-B4S" firstAttribute="trailing" secondItem="F4I-5s-xS9" secondAttribute="trailing" id="7ht-gN-P79"/>
+                            <constraint firstItem="nE7-7m-ENo" firstAttribute="top" secondItem="F4I-5s-xS9" secondAttribute="bottom" constant="76" id="Ahj-tw-0B5"/>
+                            <constraint firstItem="KlP-rN-B4S" firstAttribute="leading" secondItem="tLm-JN-zXi" secondAttribute="leadingMargin" id="B9e-7O-3FE"/>
+                            <constraint firstItem="KlP-rN-B4S" firstAttribute="top" secondItem="24a-2x-DGk" secondAttribute="bottom" constant="8" symbolic="YES" id="DmS-Mf-DvA"/>
+                            <constraint firstItem="KlP-rN-B4S" firstAttribute="trailing" secondItem="tLm-JN-zXi" secondAttribute="trailingMargin" id="oRf-ya-7mj"/>
+                            <constraint firstItem="F4I-5s-xS9" firstAttribute="top" secondItem="KlP-rN-B4S" secondAttribute="bottom" constant="8" symbolic="YES" id="tRJ-R7-3qF"/>
+                            <constraint firstItem="KlP-rN-B4S" firstAttribute="leading" secondItem="F4I-5s-xS9" secondAttribute="leading" id="tXc-5Y-i0B"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RNb-p3-Tdo">
-                        <barButtonItem key="rightBarButtonItem" title="✊🏼✊🏼✊🏼💦" id="J9l-My-Wmf">
+                    <navigationItem key="navigationItem" id="CvD-sR-jXu">
+                        <barButtonItem key="rightBarButtonItem" title="Add to Favorites" id="IfZ-pS-aP6">
                             <connections>
-                                <action selector="addToFavoritesButton:" destination="Rbm-g7-HQk" id="Xc9-p4-b0f"/>
+                                <action selector="addToFave:" destination="DAt-px-Iiq" id="gyf-xb-91B"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="optionsStackView" destination="DxW-X8-juf" id="vhg-tK-1jw"/>
-                        <outlet property="titleOfPoll" destination="qlp-Mm-0tf" id="5Bi-Ws-7A3"/>
+                        <outlet property="optionsStackView" destination="F4I-5s-xS9" id="2V6-Hn-Q9J"/>
+                        <outlet property="titleOfPoll" destination="KlP-rN-B4S" id="sVy-bd-ooe"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YmH-6C-l5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8uA-0w-VNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1150" y="-322"/>
+            <point key="canvasLocation" x="1488.8" y="334.18290854572717"/>
         </scene>
     </scenes>
 </document>
