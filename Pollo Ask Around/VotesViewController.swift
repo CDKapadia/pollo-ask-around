@@ -24,7 +24,8 @@ class VotesViewController: UIViewController {
     var hasVoted = false
     var hasBeenDeleted = false
     var votesArray : [Int] = []
-    var pollTitle = String()  
+    var pollTitle = String()
+    var sum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,10 @@ class VotesViewController: UIViewController {
                     self.userVoteId = jsonResult["oid"].stringValue
                     self.isDone2 = true
                 }
+                else{
+                    self.isDone2 = true
+                }
+                
             }
         })
         task2.resume()
@@ -76,7 +81,7 @@ class VotesViewController: UIViewController {
         //optionsStackView.translatesAutoresizingMaskIntoConstraints = false;
         // Do any additional setup after loading the view.
         var tag = 1
-        let sum = votesArray.reduce(0,+)
+        self.sum = votesArray.reduce(0,+)
         for name in myArray{
             let button = UIButton()
             //button.backgroundColor = .orange
@@ -86,7 +91,6 @@ class VotesViewController: UIViewController {
             button.titleLabel!.numberOfLines = 1
             
             var imageSize = CGSize()
-            
             if(sum>0){
                 imageSize = CGSize(width:Double(votesArray[tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
             }else{
@@ -149,6 +153,12 @@ class VotesViewController: UIViewController {
         if !hasVoted{
             self.optionsStackView.arrangedSubviews[sender.tag - 1].backgroundColor = .orange
             self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
+            
+            //not voted already
+            
+            
+            
+            
             var request = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+indexid[sender.tag])!)
             request.httpMethod = "PATCH"
             let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
@@ -180,6 +190,8 @@ class VotesViewController: UIViewController {
             //do nothing
         }
         else {
+            
+            // orange
             self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)! - 1].backgroundColor = .white
             //print(self.indexid.index(of:self.userVoteId)!)
             //self.userVoteId = self.indexid[sender.tag]
@@ -188,6 +200,33 @@ class VotesViewController: UIViewController {
             self.optionsStackView.arrangedSubviews[sender.tag - 1].backgroundColor = .orange
             self.optionsStackView.arrangedSubviews[self.indexid.index(of: self.userVoteId)! - 1].reloadInputViews()
             self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
+            
+            print(votesArray)
+            print("what was changed",self.indexid.index(of: self.userVoteId)! - 1)
+            print("new",sender.tag - 1)
+            votesArray[self.indexid.index(of: self.userVoteId)! - 1]-=1
+            votesArray[sender.tag - 1]+=1
+            for button in self.optionsStackView.arrangedSubviews as! [UIButton]{
+                button.subviews[button.subviews.count-1].removeFromSuperview() //remove the current green bar.
+                
+                var imageSize = CGSize()
+                if(sum>0){
+                    imageSize = CGSize(width:Double(votesArray[button.tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
+                }else{
+                    imageSize = CGSize(width:1, height: 10)
+                }
+                //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
+                let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
+                imageView.backgroundColor = .green
+                imageView.alpha = 0.25
+                imageView.isUserInteractionEnabled = false;
+                imageView.isExclusiveTouch = false;
+                button.addSubview(imageView)
+
+                button.reloadInputViews()
+            }
+            
+            //request
             let uuid = "\"uuid\":\""+UIDevice.current.identifierForVendor!.uuidString
             var request2 = URLRequest(url: URL(string: "http://52.43.103.143:3456/options/"+self.userVoteId)!)
             request2.httpMethod = "PATCH"
