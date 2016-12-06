@@ -1,26 +1,28 @@
 //
-//  SettingsViewController.swift
+//  SplashScreenController.swift
 //  Pollo Ask Around
 //
-//  Created by Chiraag Kapadia on 11/15/16.
+//  Created by Chiraag Kapadia on 12/6/16.
 //  Copyright © 2016 CAKK. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SplashScreenController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-        let controller = storyboard.instantiateInitialViewController()! as UIViewController
-        addChildViewController(controller)
-        view.addSubview(controller.view)
-        controller.didMove(toParentViewController: self)
 
         // Do any additional setup after loading the view.
+
+        _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(enterApp), userInfo: nil, repeats: false)
     }
+    
+    func enterApp() {
+        self.performSegue(withIdentifier: "enterApp", sender: self)
+    }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

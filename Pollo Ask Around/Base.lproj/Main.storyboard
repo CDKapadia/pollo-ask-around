@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="T4c-RV-7om">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YjZ-Tv-A1Y">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,25 +27,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsI-RS-TOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="609" y="644"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="cVT-br-Y3T">
-            <objects>
-                <viewController id="uyG-Hm-kYb" customClass="MapViewController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hBE-RS-BXt"/>
-                        <viewControllerLayoutGuide type="bottom" id="DT5-HJ-kR7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RoZ-PZ-AeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="iZT-Wb-YmF"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pnv-SF-9S2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1438" y="170"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="9WJ-EP-cTz">
@@ -86,6 +67,33 @@
             </objects>
             <point key="canvasLocation" x="610" y="-833"/>
         </scene>
+        <!--Splash Screen Controller-->
+        <scene sceneID="dwZ-vX-Im9">
+            <objects>
+                <viewController id="YjZ-Tv-A1Y" customClass="SplashScreenController" customModule="Pollo_Ask_Around" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5au-S6-Guf"/>
+                        <viewControllerLayoutGuide type="bottom" id="bxp-2w-XmU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A4M-gr-whJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="1PL-hd-LDu">
+                                <rect key="frame" x="16" y="134" width="343" height="293"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="T4c-RV-7om" kind="presentation" identifier="enterApp" id="Efa-ii-T2E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="En7-nI-vHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1104.8" y="108.39580209895054"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oZl-Hf-86E">
             <objects>
@@ -98,7 +106,6 @@
                     <connections>
                         <segue destination="yRN-03-RaI" kind="relationship" relationship="viewControllers" id="yo8-M4-dzC"/>
                         <segue destination="FaZ-CL-IRP" kind="relationship" relationship="viewControllers" id="814-Xk-QkR"/>
-                        <segue destination="uyG-Hm-kYb" kind="relationship" relationship="viewControllers" id="FrZ-4x-Daz"/>
                         <segue destination="auR-Wd-13r" kind="relationship" relationship="viewControllers" id="8i3-6f-dbh"/>
                     </connections>
                 </tabBarController>
@@ -107,4 +114,7 @@
             <point key="canvasLocation" x="-332" y="62"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo.png" width="621" height="450"/>
+    </resources>
 </document>

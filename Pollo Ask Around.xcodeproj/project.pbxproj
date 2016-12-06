@@ -10,6 +10,9 @@
 		3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */; };
 		3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */; };
 		68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B640511DE1349500881C34 /* MakePollViewController.swift */; };
+		CB1FA8771DF72AD700D36F8E /* SplashScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1FA8761DF72AD700D36F8E /* SplashScreenController.swift */; };
+		CB1FA87A1DF72D2300D36F8E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = CB1FA8781DF72D2300D36F8E /* background.png */; };
+		CB1FA87B1DF72D2300D36F8E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB1FA8791DF72D2300D36F8E /* logo.png */; };
 		CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */; };
 		CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */; };
 		CB51B0A61DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0A41DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld */; };
@@ -39,6 +42,9 @@
 		3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesViewController.swift; sourceTree = "<group>"; };
 		68B640511DE1349500881C34 /* MakePollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePollViewController.swift; sourceTree = "<group>"; };
+		CB1FA8761DF72AD700D36F8E /* SplashScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenController.swift; sourceTree = "<group>"; };
+		CB1FA8781DF72D2300D36F8E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		CB1FA8791DF72D2300D36F8E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pollo Ask Around.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB51B0A21DDBEA3E00A5ACCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +109,9 @@
 				CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */,
 				3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */,
 				CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */,
+				CB1FA8761DF72AD700D36F8E /* SplashScreenController.swift */,
+				CB1FA8781DF72D2300D36F8E /* background.png */,
+				CB1FA8791DF72D2300D36F8E /* logo.png */,
 				CB51B0A71DDBEA3E00A5ACCF /* Assets.xcassets */,
 				CB51B0A91DDBEA3E00A5ACCF /* LaunchScreen.storyboard */,
 				CB51B0AC1DDBEA3E00A5ACCF /* Info.plist */,
@@ -219,7 +228,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB1FA87B1DF72D2300D36F8E /* logo.png in Resources */,
 				D388F9A11DF3D562001C1464 /* pin.svg in Resources */,
+				CB1FA87A1DF72D2300D36F8E /* background.png in Resources */,
 				CBB764471DE9F5B700A8A3AF /* checkedBox.png in Resources */,
 				D388F9A91DF3D792001C1464 /* pin.png in Resources */,
 				CB51B0AB1DDBEA3E00A5ACCF /* LaunchScreen.storyboard in Resources */,
@@ -246,6 +257,7 @@
 				68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */,
 				CB6A2B251DF3BE5B00B77C97 /* FaveViewCell.swift in Sources */,
 				CBB7643D1DE9E96400A8A3AF /* PollTableCell.swift in Sources */,
+				CB1FA8771DF72AD700D36F8E /* SplashScreenController.swift in Sources */,
 				3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */,
 				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
 				CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */,
