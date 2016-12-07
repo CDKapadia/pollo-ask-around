@@ -33,6 +33,7 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
     var latitude: CLLocationDegrees = 0.0
     var longitude: CLLocationDegrees = 0.0
     var sum = 0
+    var buttonHeight = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,10 +111,11 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
             button.titleLabel!.numberOfLines = 1
             
             var imageSize = CGSize()
+            buttonHeight = 0.80 * Double(optionsStackView.frame.size.height)/Double(myArray.count)
             if(sum>0){
-                imageSize = CGSize(width:Double(votesArray[tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
-            }else{
-                imageSize = CGSize(width:1, height: 10)
+                imageSize = CGSize(width:Double(votesArray[tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: buttonHeight)
+                            }else{
+                imageSize = CGSize(width:1, height: buttonHeight)
             }
             //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
             let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
@@ -181,7 +183,6 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
             self.optionsStackView.arrangedSubviews[sender.tag - 1].reloadInputViews()
             
             //not voted already
-//            print(votesArray)
             votesArray[sender.tag - 1]+=1
             self.sum = votesArray.reduce(0,+)
             for button in self.optionsStackView.arrangedSubviews as! [UIButton]{
@@ -189,11 +190,10 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
                 
                 var imageSize = CGSize()
                 if(sum>0){
-                    imageSize = CGSize(width:Double(votesArray[button.tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
+                    imageSize = CGSize(width:Double(votesArray[button.tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height:  buttonHeight)
                 }else{
-                    imageSize = CGSize(width:1, height: 10)
+                    imageSize = CGSize(width:1, height: buttonHeight)
                 }
-                //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
                 let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
                 imageView.backgroundColor = .green
                 imageView.alpha = 0.25
@@ -238,7 +238,7 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
             // orange
             let previousVoteId = self.userVoteId
             self.userVoteId = self.indexid[sender.tag]
-            self.optionsStackView.arrangedSubviews[self.indexid.index(of: previousVoteId)! - 1].backgroundColor = .white
+            self.optionsStackView.arrangedSubviews[self.indexid.index(of: previousVoteId)! - 1].backgroundColor = .clear
             //print(self.indexid.index(of:self.userVoteId)!)
             //self.userVoteId = self.indexid[sender.tag]
             //print(sender.tag)
@@ -257,11 +257,10 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
                 
                 var imageSize = CGSize()
                 if(sum>0){
-                    imageSize = CGSize(width:Double(votesArray[button.tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: 10)
+                    imageSize = CGSize(width:Double(votesArray[button.tag-1])/Double(sum) * Double(optionsStackView.frame.size.width), height: buttonHeight)
                 }else{
-                    imageSize = CGSize(width:1, height: 10)
+                    imageSize = CGSize(width:1, height: buttonHeight)
                 }
-                //            let imageSize = CGSize(width:Double(sum)/Double(votesArray[tag-1]) * Double(optionsStackView.frame.size.width), height: 10)
                 let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: imageSize))
                 imageView.backgroundColor = .green
                 imageView.alpha = 0.25
@@ -385,38 +384,5 @@ class VotesViewController: UIViewController, MKMapViewDelegate {
         
         return annotationView
     }
-    
-    //    @IBAction func addToFavoritesButton(_ sender: Any) {
-    //        print("testing")
-    //        let defaults = UserDefaults.standard
-    //        if defaults.dictionary(forKey: "FavoritesArray") != nil {
-    //            //if the user already exists.
-    //            var faveArray = defaults.dictionary(forKey: "FavoritesArray") as! [String:String]
-    //            if faveArray[pollId] == nil{
-    //                //if the key is not already in favorites
-    //                //add it to favorites
-    //                faveArray[pollId] = pollTitle
-    //                defaults.set(faveArray, forKey: "FavoritesArray")
-    //                print("added to favorites")
-    //
-    //            }
-    //        }else{
-    //            //make for the user
-    //            var faveArray: [String : String] = [:]
-    //            faveArray[pollId] = pollTitle
-    //            defaults.set(faveArray, forKey: "FavoritesArray")
-    //
-    //        }
-    //
-    //    }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
