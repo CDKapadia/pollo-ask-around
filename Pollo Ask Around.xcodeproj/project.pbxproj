@@ -10,6 +10,7 @@
 		3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */; };
 		3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */; };
 		68B640521DE1349500881C34 /* MakePollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B640511DE1349500881C34 /* MakePollViewController.swift */; };
+		CB4C5A7D1DF7960400F511A5 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4C5A7C1DF7960400F511A5 /* logo.png */; };
 		CB51B09E1DDBEA3E00A5ACCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */; };
 		CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */; };
 		CB51B0A61DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0A41DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld */; };
@@ -19,10 +20,6 @@
 		CB51B0B91DDBEBED00A5ACCF /* Polls.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */; };
 		CB51B0BB1DDBEC1D00A5ACCF /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0BA1DDBEC1D00A5ACCF /* Favorites.storyboard */; };
 		CB51B0BD1DDBEC6A00A5ACCF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0BC1DDBEC6A00A5ACCF /* FavoritesViewController.swift */; };
-		CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0BE1DDBEC7F00A5ACCF /* MapViewController.swift */; };
-		CB51B0C11DDBEC8800A5ACCF /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */; };
-		CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */; };
-		CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */; };
 		CB6A2B231DF3B3F100B77C97 /* FavoritesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6A2B221DF3B3F100B77C97 /* FavoritesTableController.swift */; };
 		CB6A2B251DF3BE5B00B77C97 /* FaveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6A2B241DF3BE5B00B77C97 /* FaveViewCell.swift */; };
 		CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */; };
@@ -40,6 +37,7 @@
 		3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		3D12E89C1DE26AD7001ED7B5 /* VotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesViewController.swift; sourceTree = "<group>"; };
 		68B640511DE1349500881C34 /* MakePollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePollViewController.swift; sourceTree = "<group>"; };
+		CB4C5A7C1DF7960400F511A5 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		CB51B09A1DDBEA3E00A5ACCF /* Pollo Ask Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pollo Ask Around.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB51B0A21DDBEA3E00A5ACCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,10 +49,6 @@
 		CB51B0B81DDBEBED00A5ACCF /* Polls.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Polls.storyboard; sourceTree = "<group>"; };
 		CB51B0BA1DDBEC1D00A5ACCF /* Favorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		CB51B0BC1DDBEC6A00A5ACCF /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		CB51B0BE1DDBEC7F00A5ACCF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
-		CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CB6A2B221DF3B3F100B77C97 /* FavoritesTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableController.swift; sourceTree = "<group>"; };
 		CB6A2B241DF3BE5B00B77C97 /* FaveViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaveViewCell.swift; sourceTree = "<group>"; };
 		CB81F3441DE117AA00928529 /* PollTableAndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTableAndViewController.swift; sourceTree = "<group>"; };
@@ -100,13 +94,12 @@
 			children = (
 				CB51B0B21DDBEB6000A5ACCF /* Polls */,
 				CB51B0B31DDBEB6C00A5ACCF /* Favorites */,
-				CB51B0B51DDBEB7F00A5ACCF /* Map */,
-				CB51B0B41DDBEB7900A5ACCF /* Settings */,
 				CB51B09D1DDBEA3E00A5ACCF /* AppDelegate.swift */,
 				3D12E8981DE241A2001ED7B5 /* SwiftyJSON.swift */,
 				CB51B0A11DDBEA3E00A5ACCF /* Main.storyboard */,
 				CB51B0A71DDBEA3E00A5ACCF /* Assets.xcassets */,
 				CB51B0A91DDBEA3E00A5ACCF /* LaunchScreen.storyboard */,
+				CB4C5A7C1DF7960400F511A5 /* logo.png */,
 				CB51B0AC1DDBEA3E00A5ACCF /* Info.plist */,
 				CB51B0A41DDBEA3E00A5ACCF /* Pollo_Ask_Around.xcdatamodeld */,
 			);
@@ -142,24 +135,6 @@
 				CB6A2B241DF3BE5B00B77C97 /* FaveViewCell.swift */,
 			);
 			name = Favorites;
-			sourceTree = "<group>";
-		};
-		CB51B0B41DDBEB7900A5ACCF /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				CB51B0C21DDBECAD00A5ACCF /* Settings.storyboard */,
-				CB51B0C41DDBECD600A5ACCF /* SettingsViewController.swift */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
-		CB51B0B51DDBEB7F00A5ACCF /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				CB51B0BE1DDBEC7F00A5ACCF /* MapViewController.swift */,
-				CB51B0C01DDBEC8800A5ACCF /* Map.storyboard */,
-			);
-			name = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB4C5A7D1DF7960400F511A5 /* logo.png in Resources */,
 				D388F9A11DF3D562001C1464 /* pin.svg in Resources */,
 				CBB764471DE9F5B700A8A3AF /* checkedBox.png in Resources */,
 				D388F9A91DF3D792001C1464 /* pin.png in Resources */,
@@ -230,9 +206,7 @@
 				CB51B0A81DDBEA3E00A5ACCF /* Assets.xcassets in Resources */,
 				CB51B0A31DDBEA3E00A5ACCF /* Main.storyboard in Resources */,
 				CB51B0BB1DDBEC1D00A5ACCF /* Favorites.storyboard in Resources */,
-				CB51B0C11DDBEC8800A5ACCF /* Map.storyboard in Resources */,
 				CBB764461DE9F5B700A8A3AF /* outline.png in Resources */,
-				CB51B0C31DDBECAD00A5ACCF /* Settings.storyboard in Resources */,
 				D388F9AF1DF3E61C001C1464 /* polls_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,14 +225,12 @@
 				CB6A2B251DF3BE5B00B77C97 /* FaveViewCell.swift in Sources */,
 				CBB7643D1DE9E96400A8A3AF /* PollTableCell.swift in Sources */,
 				3D12E89D1DE26AD7001ED7B5 /* VotesViewController.swift in Sources */,
-				CB51B0BF1DDBEC7F00A5ACCF /* MapViewController.swift in Sources */,
 				CB81F3451DE117AA00928529 /* PollTableAndViewController.swift in Sources */,
 				CBB764431DE9F48100A8A3AF /* Checkbox.swift in Sources */,
 				CBFE2BA61DF005BB00C5FE6B /* MyStackView.swift in Sources */,
 				3D12E8991DE241A2001ED7B5 /* SwiftyJSON.swift in Sources */,
 				CB51B0B71DDBEBA800A5ACCF /* PollsViewController.swift in Sources */,
 				CB6A2B231DF3B3F100B77C97 /* FavoritesTableController.swift in Sources */,
-				CB51B0C51DDBECD600A5ACCF /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
